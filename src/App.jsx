@@ -33,16 +33,10 @@ const FOOD_CATS = [
    ========================================================= */
 const GAMING = [
   {
-    id: 1, platform: "console", type: "youtube",
-    title: "Resident Evil 6 — Walkthrough Part 1 (Leon Campaign)",
-    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    desc: "เริ่มต้นการเดินทางสุดระทึกกับลีออน ฉากเปิดเกมสุดมันส์!",
-  },
-  {
-    id: 2, platform: "pc", type: "tiktok",
-    title: "Clip เด็ด! บอสไฟต์สุดโหด 🔥",
-    url: "https://www.tiktok.com/@example/video/123",
-    desc: "ช็อตเด็ดตัดมาให้ดูกันสั้นๆ ใน TikTok",
+    id: 1, platform: "pc", type: "youtube",
+    title: "คลิปเกมล่าสุด จากช่อง FLUKE GAMER",
+    url: "https://www.youtube.com/watch?v=oAdGhJzaHFY",
+    desc: "มาชมคอนเทนต์เกมสนุกๆ กันได้เลย!",
   },
 ];
 
@@ -54,13 +48,13 @@ const GAMING = [
 const RUNS = [
   {
     id: 1,
-    title: "City Run Round Trip แสมสาร - ท่าเรือสัตหีบ",
-    distance: "19.66 กม.",
-    duration: "2.30 ชั่วโมง",
+    title: "City Run รอบเมืองเก่า",
+    distance: "5.2 กม.",
+    duration: "42 นาที",
     points: [
-      { stage: "start", place: "ครัวแสมสารซีฟู๊ด", img: "https://scontent.fbkk29-5.fna.fbcdn.net/v/t39.30808-6/723586175_10239964996197189_886605665806948748_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1536&ctp=s2048x1536&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE79jBK22xszHgndBARjGAxp-Qgv0TMOwmn5CC_RMw7CYtMBw9Lyb_9OFjNqcjW92Q&_nc_ohc=XNfefVqGJHcQ7kNvwHYYkvw&_nc_oc=Adr3KavpGIIKHo3mN9bY58JvJ0tCXa4pIumyn_WFWH9coNcmnL2krwVUm96BNDriiHu4RP3BNrG0_FpdygP5oPQd&_nc_zt=23&_nc_ht=scontent.fbkk29-5.fna&_nc_gid=MjCen7Bih_qfAg9lDOofEw&_nc_ss=7b2a8&oh=00_AQCdP5rG5k4YtGaBY3iJU5LX4fSvL7MLMEYBF0pay_PM3Q&oe=6A4EB277", note: "ออกตัวเช้าตรู่ เวลาตี 5.15 อากาศกำลังดี" },
-      { stage: "mid", place: "เส้นทางสวยในค่ายหน่วยบัญชาการสงครามพิเศษทางเรือ", img: "https://scontent.fbkk29-8.fna.fbcdn.net/v/t39.30808-6/723042555_10239965000477296_2384131687942038959_n.jpg?stp=dst-jpg_tt6&cstp=mx960x720&ctp=s960x720&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGMz6S5fg9mHy6kpdDPix2kCvMMutkdLGIK8wy62R0sYtEjT7HvRwGFbZ63lBz17u8&_nc_ohc=ywmXCqdCM18Q7kNvwF4Qifx&_nc_oc=AdpFgA8Y2w2EQ8wX9AyTNy_0-qfyXWyA4W7zH27QkjyA4U7tbpTiUOLTMV33MK_F2d_lntHa3ywVjGBF6o2O-B5J&_nc_zt=23&_nc_ht=scontent.fbkk29-8.fna&_nc_gid=aSybsg00IpYuAF6uQ4KzMQ&_nc_ss=7b2a8&oh=00_AQA8bYF_kxpHoQ7zNeq5paqHq3Wz7nY65k8GiWARi6Hk8A&oe=6A4E9C65", note: "วิวสวย แวะถ่ายรูปนิดหน่อย" },
-      { stage: "finish", place: "ร้านข้าวมันไก่", img: "https://scontent.fbkk29-2.fna.fbcdn.net/v/t39.30808-6/472756993_122180382656251444_8828403763584209303_n.jpg?stp=dst-jpg_tt6&cstp=mx960x720&ctp=s960x720&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGFTJAOrS6VKfAcYLLUBxmaeAeh6fFihsR4B6Hp8WKGxAsKB13wfe8m2LRexsVuue0&_nc_ohc=hPnjenmvNp0Q7kNvwGcld8G&_nc_oc=AdoZa5nICciqDUEzdJsMtDAAmICTFwtQnsQa1A67LOr7bCMtka6HuwsFAlezCr7JqrYoKSwhjgcE96LKoIwnVJVa&_nc_zt=23&_nc_ht=scontent.fbkk29-2.fna&_nc_gid=b9BsLGgHPgCwjgqLT2Ic6A&_nc_ss=7b2a8&oh=00_AQDehCJfM7vf2rmUi7jUYRDKC63_m0iCtqW7K7XAgfGe-A&oe=6A4EB179", note: "จบทริปด้วยความฟิน!" },
+      { stage: "start", place: "หน้าวัดเก่า", img: "", note: "ออกตัวเช้าตรู่ อากาศกำลังดี" },
+      { stage: "mid", place: "ริมคลอง", img: "", note: "วิวสวย แวะถ่ายรูปนิดหน่อย" },
+      { stage: "finish", place: "ลานกิจกรรม", img: "", note: "จบทริปด้วยความฟิน!" },
     ],
   },
 ];
@@ -88,12 +82,15 @@ const FOOD = [
 ];
 
 /* =========================================================
-   ช่องทางติดตาม — ใส่ลิงก์ช่องจริงของคุณตรงนี้
+   ช่องทางติดตาม — แยกตามหมวด
    ========================================================= */
-const SOCIALS = {
-  youtube: "#",
-  tiktok: "#",
-  reels: "#",
+const SOCIAL_GAME = {
+  youtube: "https://www.youtube.com/@FLUKEGAMEROFFICIAL",
+  tiktok: "https://www.tiktok.com/@flukegamerofficial",
+  facebook: "https://www.facebook.com/flukegamerth/",
+};
+const SOCIAL_RUN = {
+  facebook: "https://www.facebook.com/FlukerunnerOfficial/",
 };
 
 // ---------- media thumbnail card (ดูอย่างเดียว) ----------
@@ -261,6 +258,14 @@ export default function App() {
             {filteredGaming.map((item) => <MediaCard key={item.id} item={item} />)}
           </div>
         )}
+
+        {/* ช่องเกม */}
+        <div className="mt-6 flex items-center gap-2 flex-wrap bg-white border border-emerald-100 rounded-2xl p-4 shadow-sm">
+          <span className="text-sm font-semibold text-gray-600 mr-1">ติดตามช่องเกม:</span>
+          <a href={SOCIAL_GAME.youtube} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 bg-red-50 text-red-600 font-bold text-sm px-4 py-2 rounded-xl hover:bg-red-600 hover:text-white transition"><Youtube className="w-4 h-4" /> YouTube</a>
+          <a href={SOCIAL_GAME.tiktok} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 bg-gray-100 text-gray-800 font-bold text-sm px-4 py-2 rounded-xl hover:bg-black hover:text-white transition">♪ TikTok</a>
+          <a href={SOCIAL_GAME.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 bg-blue-50 text-blue-600 font-bold text-sm px-4 py-2 rounded-xl hover:bg-blue-600 hover:text-white transition">📘 Facebook</a>
+        </div>
       </section>
 
       {/* ===== 2. RUNNING ===== */}
@@ -280,6 +285,12 @@ export default function App() {
             {RUNS.map((run) => <RunCard key={run.id} run={run} />)}
           </div>
         )}
+
+        {/* ช่องวิ่ง */}
+        <div className="mt-6 flex items-center gap-2 flex-wrap bg-white border border-emerald-100 rounded-2xl p-4 shadow-sm">
+          <span className="text-sm font-semibold text-gray-600 mr-1">ติดตามช่องวิ่ง:</span>
+          <a href={SOCIAL_RUN.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 bg-blue-50 text-blue-600 font-bold text-sm px-4 py-2 rounded-xl hover:bg-blue-600 hover:text-white transition">📘 Facebook</a>
+        </div>
       </section>
 
       {/* ===== 3. FOOD ===== */}
@@ -318,20 +329,21 @@ export default function App() {
           </div>
           <p className="leading-relaxed text-emerald-50 max-w-2xl">
             สวัสดีครับ! ผมเป็นเกมเมอร์ที่หลงใหลการเล่นเกมทุกแพลตฟอร์ม ตั้งแต่ PC, Console ไปจนถึง Mobile
-            ทำคลิป Walkthrough และคอนเทนต์เกมลง YouTube, TikTok และ Reels
+            ทำคลิป Walkthrough และคอนเทนต์เกมลง YouTube, TikTok และ Facebook
             นอกจากเกมแล้ว ผมยังชอบออกไปวิ่งสำรวจเมืองแบบ City Run และตามหาของอร่อย
             ทั้งร้านดัง เมนูใหม่ในร้านสะดวกซื้อ ไปจนถึงเมนูทำเองที่บ้าน มาแชร์ให้ทุกคนได้ตามรอยกันครับ 🎮🏃‍♂️🍜
           </p>
-          <div className="flex gap-3 mt-6 flex-wrap">
-            <a href={SOCIALS.youtube} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white text-emerald-700 font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-emerald-50 transition shadow">
-              <Youtube className="w-4 h-4 text-red-600" /> YouTube
-            </a>
-            <a href={SOCIALS.tiktok} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white text-emerald-700 font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-emerald-50 transition shadow">
-              ♪ TikTok
-            </a>
-            <a href={SOCIALS.reels} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white text-emerald-700 font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-emerald-50 transition shadow">
-              📸 Reels
-            </a>
+          <div className="mt-6 space-y-3">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-emerald-100 text-sm font-semibold w-16">🎮 เกม:</span>
+              <a href={SOCIAL_GAME.youtube} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white text-emerald-700 font-bold text-sm px-4 py-2 rounded-xl hover:bg-emerald-50 transition shadow"><Youtube className="w-4 h-4 text-red-600" /> YouTube</a>
+              <a href={SOCIAL_GAME.tiktok} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white text-emerald-700 font-bold text-sm px-4 py-2 rounded-xl hover:bg-emerald-50 transition shadow">♪ TikTok</a>
+              <a href={SOCIAL_GAME.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white text-emerald-700 font-bold text-sm px-4 py-2 rounded-xl hover:bg-emerald-50 transition shadow">📘 Facebook</a>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-emerald-100 text-sm font-semibold w-16">🏃 วิ่ง:</span>
+              <a href={SOCIAL_RUN.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white text-emerald-700 font-bold text-sm px-4 py-2 rounded-xl hover:bg-emerald-50 transition shadow">📘 Facebook</a>
+            </div>
           </div>
         </div>
         <p className="text-center text-gray-400 text-xs mt-8">© 2026 flukesociety.com — Play · Run · Eat 💚</p>
