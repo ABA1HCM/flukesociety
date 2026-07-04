@@ -33,10 +33,22 @@ const FOOD_CATS = [
    ========================================================= */
 const GAMING = [
   {
-    id: 1, platform: "pc", type: "youtube",
-    title: "คลิปเกมล่าสุด จากช่อง FLUKE GAMER",
+    id: 1, platform: "pc", type: "youtube", badge: "ยอดนิยม",
+    title: "คลิปเกมยอดนิยม",
     url: "https://www.youtube.com/watch?v=oAdGhJzaHFY",
-    desc: "มาชมคอนเทนต์เกมสนุกๆ กันได้เลย!",
+    desc: "คลิปที่คนดูเยอะที่สุด ห้ามพลาด!",
+  },
+  {
+    id: 2, platform: "pc", type: "youtube", badge: "แนะนำ",
+    title: "คลิปเกมแนะนำ",
+    url: "https://www.youtube.com/watch?v=xhUuWHuJzAM",
+    desc: "คลิปที่อยากแนะนำให้ลองดู",
+  },
+  {
+    id: 3, platform: "pc", type: "youtube", badge: "ล่าสุด",
+    title: "คลิปเกมล่าสุด",
+    url: "https://www.youtube.com/watch?v=KiiT9IgnKb4",
+    desc: "คอนเทนต์เกมใหม่ล่าสุดจากช่อง!",
   },
 ];
 
@@ -122,6 +134,9 @@ function MediaCard({ item }) {
         )}
       </div>
       <div className="p-4">
+        {item.badge && (
+          <span className="inline-block bg-emerald-100 text-emerald-700 text-xs font-bold px-2.5 py-1 rounded-full mb-2">{item.badge}</span>
+        )}
         <h3 className="font-bold text-gray-800 leading-snug line-clamp-2">{item.title}</h3>
         {item.location && (
           <p className="text-emerald-600 text-xs mt-1 flex items-center gap-1 font-medium"><MapPin className="w-3.5 h-3.5" /> {item.location}</p>
