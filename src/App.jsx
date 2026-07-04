@@ -22,8 +22,8 @@ const PLATFORMS = [
 
 const FOOD_CATS = [
   { id: "restaurant", label: "ร้านอาหาร", icon: Store },
-  { id: "conv", label: "7-11", icon: ShoppingBag },
-  { id: "diy", label: "DIY", icon: ChefHat },
+  { id: "conv", label: "ร้านสะดวกซื้อ", icon: ShoppingBag },
+  { id: "diy", label: "เมนูทำเอง", icon: ChefHat },
 ];
 
 /* =========================================================
@@ -226,13 +226,13 @@ export default function App() {
           <span className="bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text text-transparent">Eat</span>
         </h1>
         <p className="text-gray-500 mt-4 max-w-xl mx-auto leading-relaxed">
-          บล็อกส่วนตัวรวมความชอบ — เล่นเกมทุกแพลตฟอร์ม 🎮 ออกวิ่งสำรวจเมือง 🏃‍♂️<br />
-          แล้วตามหาของอร่อยทั้งร้านดัง 7-11 และเมนู DIY 🍜
+          บล็อกส่วนตัวรวมความชอบ — เล่นเกมทุกแพลตฟอร์ม 🎮 ออกเดินวิ่งสำรวจเมือง 🏃‍♂️<br />
+          แล้วตามหาของอร่อยทั้งร้านดัง ร้านสะดวกซื้อ และเมนูทำเอง 🍜
         </p>
         <div className="flex justify-center gap-3 mt-6 flex-wrap">
-          <span className="flex items-center gap-1.5 bg-white border border-emerald-200 text-emerald-700 text-sm font-semibold px-4 py-2 rounded-full shadow-sm"><Gamepad2 className="w-4 h-4" /> เกม</span>
-          <span className="flex items-center gap-1.5 bg-white border border-emerald-200 text-emerald-700 text-sm font-semibold px-4 py-2 rounded-full shadow-sm"><Footprints className="w-4 h-4" /> วิ่ง</span>
-          <span className="flex items-center gap-1.5 bg-white border border-emerald-200 text-emerald-700 text-sm font-semibold px-4 py-2 rounded-full shadow-sm"><Utensils className="w-4 h-4" /> กิน</span>
+          <a href="#gaming" className="flex items-center gap-1.5 bg-white border border-emerald-200 text-emerald-700 text-sm font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-emerald-600 hover:text-white hover:border-emerald-600 hover:-translate-y-0.5 transition cursor-pointer"><Gamepad2 className="w-4 h-4" /> เกม</a>
+          <a href="#running" className="flex items-center gap-1.5 bg-white border border-emerald-200 text-emerald-700 text-sm font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-emerald-600 hover:text-white hover:border-emerald-600 hover:-translate-y-0.5 transition cursor-pointer"><Footprints className="w-4 h-4" /> วิ่ง</a>
+          <a href="#food" className="flex items-center gap-1.5 bg-white border border-emerald-200 text-emerald-700 text-sm font-semibold px-4 py-2 rounded-full shadow-sm hover:bg-emerald-600 hover:text-white hover:border-emerald-600 hover:-translate-y-0.5 transition cursor-pointer"><Utensils className="w-4 h-4" /> กิน</a>
         </div>
       </header>
 
@@ -320,7 +320,7 @@ export default function App() {
             สวัสดีครับ! ผมเป็นเกมเมอร์ที่หลงใหลการเล่นเกมทุกแพลตฟอร์ม ตั้งแต่ PC, Console ไปจนถึง Mobile
             ทำคลิป Walkthrough และคอนเทนต์เกมลง YouTube, TikTok และ Reels
             นอกจากเกมแล้ว ผมยังชอบออกไปวิ่งสำรวจเมืองแบบ City Run และตามหาของอร่อย
-            ทั้งร้านดัง เมนูใหม่ใน 7-11 ไปจนถึงเมนู DIY ทำเองที่บ้าน มาแชร์ให้ทุกคนได้ตามรอยกันครับ 🎮🏃‍♂️🍜
+            ทั้งร้านดัง เมนูใหม่ในร้านสะดวกซื้อ ไปจนถึงเมนูทำเองที่บ้าน มาแชร์ให้ทุกคนได้ตามรอยกันครับ 🎮🏃‍♂️🍜
           </p>
           <div className="flex gap-3 mt-6 flex-wrap">
             <a href={SOCIALS.youtube} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white text-emerald-700 font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-emerald-50 transition shadow">
