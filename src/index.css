@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans;
+    /* กันไม่ให้ตัวอักษรไทยดูบางเกินไปบนพื้นสีเข้ม */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* หัวข้อใช้ฟอนต์ display หนา ๆ — ระยะบรรทัดต้องเผื่อสระบนล่างของไทย */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-black;
+    line-height: 1.25;
+  }
+}
+
+@layer components {
+  /* ป้าย/ปุ่มทรงสติกเกอร์: ขอบหนา มุมมน เงาแข็ง */
+  .sticker {
+    @apply border-3 border-ink rounded-2xl shadow-hard-md;
+  }
+
+  /* พื้นลายจุด — ต้องใส่ bg-dot (ขนาดลาย) คู่กันเสมอ ไม่งั้นจุดจะยืดเต็มพื้นที่ */
+  .bg-dotted {
+    @apply bg-dots bg-dot;
+  }
+}
+
+/* แถบข่าววิ่ง: ทำซ้ำเนื้อหาสองชุดแล้วเลื่อน -50% เพื่อให้ต่อกันไม่มีรอยต่อ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
