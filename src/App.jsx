@@ -79,19 +79,21 @@ const RUNS = [
    3) เรื่องกิน — เพิ่มเมนู/ร้านตรงนี้
    cat: "restaurant" | "conv" (7-11) | "diy"
    type: "youtube" | "tiktok"
+   url: ถ้ายังไม่ได้อัปคลิป ให้เว้นเป็น "" ไว้
+        การ์ดจะขึ้นว่า "ยังไม่มีคลิป" และกดไม่ได้ แทนที่จะพาไปหน้าเสีย
    ========================================================= */
 const FOOD = [
   {
     id: 1, cat: "restaurant", type: "tiktok",
     title: "ก๋วยเตี๋ยวเรือเจ้าเด็ด ย่านเมืองเก่า",
-    url: "https://www.tiktok.com/@example/video/456",
+    url: "",
     desc: "น้ำซุปเข้มข้นมาก ⭐ 9/10",
     location: "ย่านเมืองเก่า",
   },
   {
     id: 2, cat: "conv", type: "tiktok",
     title: "รีวิวเมนูใหม่ 7-11 ต้องลอง!",
-    url: "https://www.tiktok.com/@example/video/789",
+    url: "",
     desc: "ของกินใหม่ในเซเว่น อร่อยเกินราคา",
     location: "7-Eleven",
   },
@@ -217,6 +219,7 @@ function SectionHead({ theme, title, lead }) {
 // ---------- การ์ดคลิป ----------
 function MediaCard({ item, theme }) {
   const ytId = item.type === "youtube" ? getYouTubeId(item.url) : null;
+  const hasLink = Boolean(item.url);
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-[20px] border-3 border-ink bg-white shadow-hard-md transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-lg">
@@ -238,7 +241,7 @@ function MediaCard({ item, theme }) {
               <Youtube className="h-3.5 w-3.5" /> YOUTUBE
             </span>
           </a>
-        ) : item.type === "tiktok" ? (
+        ) : item.type === "tiktok" && hasLink ? (
           <a href={item.url} target="_blank" rel="noopener noreferrer" className="relative block h-full w-full">
             <span className="absolute inset-0 bg-stripes" />
             <span className="absolute inset-0 flex items-center justify-center">
@@ -254,8 +257,12 @@ function MediaCard({ item, theme }) {
             </span>
           </a>
         ) : (
-          <span className="flex h-full w-full items-center justify-center text-white/70">
-            <Film className="h-10 w-10" />
+          /* ยังไม่มีลิงก์คลิป — แสดงสถานะไว้เฉย ๆ ไม่ทำเป็นลิงก์ที่กดแล้วเจอหน้าเสีย */
+          <span className="relative flex h-full w-full items-center justify-center">
+            <span className="absolute inset-0 bg-stripes" />
+            <span className="relative flex items-center gap-2 rounded-full border-2 border-ink bg-paper px-4 py-2.5 font-mono text-[11px] tracking-[0.12em] text-ink">
+              <Film className="h-4 w-4" /> ยังไม่มีคลิป
+            </span>
           </span>
         )}
 
