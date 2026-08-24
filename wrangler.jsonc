@@ -1,0 +1,12 @@
+{
+  // ตั้งค่าให้ Cloudflare Worker เสิร์ฟไฟล์ static ที่ Vite บิลด์ออกมา
+  // ชื่อ name ต้องตรงกับชื่อ Worker ในแดชบอร์ด Cloudflare
+  "name": "flukesociety",
+  "compatibility_date": "2026-08-24",
+  "assets": {
+    // โฟลเดอร์ผลลัพธ์จาก `npm run build`
+    "directory": "./dist",
+    // เว็บเป็นหน้าเดียว ถ้าเข้า path ที่ไม่มีให้ส่งกลับหน้าแรกแทน 404
+    "not_found_handling": "single-page-application"
+  }
+}
