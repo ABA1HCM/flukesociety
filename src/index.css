@@ -35,9 +35,78 @@
   }
 }
 
-/* แถบข่าววิ่ง: ทำซ้ำเนื้อหาสองชุดแล้วเลื่อน -50% เพื่อให้ต่อกันไม่มีรอยต่อ */
+/* =========================================================
+   การเคลื่อนไหว (ระดับ 1) — ใช้ CSS ล้วน ไม่เพิ่มไลบรารี
+
+   กติกาสำคัญ: ทุกอันขยับด้วยคุณสมบัติ `translate` แยกต่างหาก ไม่แตะ `transform`
+   เพราะ `transform` ถูก Tailwind ใช้กับ rotate ของการ์ดเอียงและ hover อยู่แล้ว
+   ถ้าใช้ตัวเดียวกันจะทับกันจนการ์ดเอียงหรือ hover เพี้ยน
+   ========================================================= */
+
+/* เข้าฉากตอนโหลดหน้า: หัวข้อใหญ่เด้งขึ้นทีละบรรทัด
+   หน่วงเวลาด้วยตัวแปร --d ที่ตั้งไว้ใน App.jsx
+   ห้ามใช้ overflow:hidden มาซ่อนตัวอักษร เพราะสระบน-ล่างของไทยจะโดนตัด */
+@keyframes rise {
+  from { opacity: 0; translate: 0 28px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+/* การ์ดสามหมวดในหน้าแรกลอยขึ้นลงเบา ๆ */
+@keyframes bob {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -7px; }
+}
+
+.rise {
+  animation: rise 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.bob {
+  animation: bob 5.5s ease-in-out infinite;
+  animation-delay: var(--d, 0ms);
+}
+
+/* โผล่ตามการเลื่อนหน้า: เริ่มจางและต่ำลง แล้วเลื่อนขึ้นเมื่อเข้าจอ */
+.reveal {
+  opacity: 0;
+  translate: 0 26px;
+  transition:
+    opacity 0.6s ease,
+    translate 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.reveal.is-in {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* กดปุ่มแล้วยุบลงเหมือนกดสติกเกอร์: ขยับเข้าหาเงาจนเงาหาย
+   ต้องอยู่นอก @layer และใช้ !important เพื่อชนะเงาของ Tailwind */
+.press:active {
+  translate: 3px 3px;
+  box-shadow: 0 0 0 #241c14 !important;
+}
+.press {
+  transition-property: transform, box-shadow, translate, background-color;
+}
+
+/* คนที่เปิด "ลดการเคลื่อนไหว" ในเครื่อง จะเห็นทุกอย่างนิ่งและครบทันที */
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .rise,
+  .bob {
     animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+  .press:active {
+    translate: none;
+  }
+  html {
+    scroll-behavior: auto;
   }
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Gamepad2, Monitor, Smartphone, Joystick, MapPin, Youtube, Play, Utensils,
   User, ExternalLink, Film, Star, Footprints, Flag, Route,
@@ -142,6 +142,46 @@ const THEME = {
   },
 };
 
+// ---------- โผล่ตามการเลื่อนหน้า ----------
+// ห่อส่วนไหนก็ได้ ส่วนนั้นจะค่อย ๆ เลื่อนขึ้นตอนเข้าจอครั้งแรก
+// delay = หน่วงเป็นมิลลิวินาที ใช้ไล่ทีละใบในกริดให้ดูเป็นจังหวะ
+// ถ้าเครื่องเปิด "ลดการเคลื่อนไหว" หรือเบราว์เซอร์ไม่รองรับ จะแสดงทันทีเลย
+function Reveal({ delay = 0, className = "", children }) {
+  const ref = useRef(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (calm || !("IntersectionObserver" in window)) {
+      setShown(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{ "--d": `${delay}ms` }}
+      className={`reveal ${shown ? "is-in" : ""} ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
 // ---------- แถบข่าววิ่ง ----------
 function Ticker() {
   const run = RUNS[0];
@@ -201,7 +241,7 @@ function FilterRow({ options, value, onChange }) {
 function SectionHead({ theme, title, lead }) {
   const Icon = theme.icon;
   return (
-    <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
+    <Reveal className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
       <div className="flex flex-col gap-3">
         <span className="font-mono text-[11px] tracking-[0.22em] text-ink-faint">{theme.en}</span>
         <h2 className="flex items-center gap-3 text-3xl/[1.3] sm:text-4xl/[1.3] lg:text-[2.75rem]/[1.3]">
@@ -212,17 +252,19 @@ function SectionHead({ theme, title, lead }) {
         </h2>
       </div>
       {lead && <p className="max-w-sm text-[15px] leading-thai text-ink-muted">{lead}</p>}
-    </div>
+    </Reveal>
   );
 }
 
 // ---------- การ์ดคลิป ----------
-function MediaCard({ item, theme }) {
+// index = ลำดับในกริด ใช้หน่วงให้การ์ดโผล่ทีละใบ (สูงสุด 3 ใบ/แถว จึงวนทุก 3)
+function MediaCard({ item, theme, index = 0 }) {
   const ytId = item.type === "youtube" ? getYouTubeId(item.url) : null;
   const hasLink = Boolean(item.url);
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-[20px] border-3 border-ink bg-white shadow-hard-md transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-lg">
+    <Reveal delay={(index % 3) * 90} className="h-full">
+    <article className="group flex h-full flex-col overflow-hidden rounded-[20px] border-3 border-ink bg-white shadow-hard-md transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-lg">
       <div className={`relative aspect-video border-b-3 border-ink ${theme.cover}`}>
         {ytId ? (
           <a href={item.url} target="_blank" rel="noopener noreferrer" className="block h-full w-full">
@@ -283,6 +325,7 @@ function MediaCard({ item, theme }) {
         )}
       </div>
     </article>
+    </Reveal>
   );
 }
 
@@ -296,7 +339,7 @@ const STAGE = {
 function RunCard({ run }) {
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-wrap items-center gap-4 rounded-[20px] border-3 border-ink bg-run p-6 text-run-on shadow-hard-md">
+      <Reveal className="flex flex-wrap items-center gap-4 rounded-[20px] border-3 border-ink bg-run p-6 text-run-on shadow-hard-md">
         <h3 className="flex-1 text-2xl/[1.35] sm:text-[1.75rem]/[1.35]">{run.title}</h3>
         <span className="flex h-11 items-center gap-2 rounded-full border-3 border-run-on bg-paper px-4 font-mono text-sm font-semibold">
           <Route className="h-4 w-4" /> {run.distance}
@@ -304,14 +347,15 @@ function RunCard({ run }) {
         <span className="flex h-11 items-center gap-2 rounded-full border-3 border-run-on bg-paper px-4 font-mono text-sm font-semibold">
           <Clock className="h-4 w-4" /> {run.duration}
         </span>
-      </div>
+      </Reveal>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {run.points.map((pt, i) => {
           const st = STAGE[pt.stage] || STAGE.mid;
           const Icon = st.icon;
           return (
-            <article key={i} className="flex flex-col overflow-hidden rounded-[20px] border-3 border-ink bg-paper shadow-hard-md">
+            <Reveal key={i} delay={(i % 3) * 110} className="h-full">
+            <article className="flex h-full flex-col overflow-hidden rounded-[20px] border-3 border-ink bg-paper shadow-hard-md">
               <div className="relative h-44 border-b-3 border-ink bg-run">
                 <span className="absolute inset-0 bg-stripes" />
                 {pt.img ? (
@@ -335,6 +379,7 @@ function RunCard({ run }) {
                 {pt.note && <p className="text-[15px] leading-thai text-ink-muted">{pt.note}</p>}
               </div>
             </article>
+            </Reveal>
           );
         })}
       </div>
@@ -345,7 +390,7 @@ function RunCard({ run }) {
 // ---------- แถวปุ่มติดตาม ----------
 function FollowRow({ label, links }) {
   return (
-    <div className="mt-8 flex flex-wrap items-center gap-3">
+    <Reveal className="mt-8 flex flex-wrap items-center gap-3">
       <span className="pr-1 font-mono text-[11px] tracking-[0.18em] text-ink-faint">{label}</span>
       {links.map((l) => (
         <a
@@ -353,13 +398,13 @@ function FollowRow({ label, links }) {
           href={l.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-12 items-center gap-2.5 rounded-full border-3 border-ink bg-paper px-5 text-sm font-semibold shadow-hard-sm transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard"
+          className="press flex h-12 items-center gap-2.5 rounded-full border-3 border-ink bg-paper px-5 text-sm font-semibold shadow-hard-sm transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard"
         >
           <l.icon className="h-4 w-4" />
           {l.label}
         </a>
       ))}
-    </div>
+    </Reveal>
   );
 }
 
@@ -418,7 +463,7 @@ export default function App() {
 
           <a
             href="#about"
-            className="flex h-12 items-center gap-2 rounded-full border-3 border-ink bg-sun px-5 text-sm font-bold shadow-hard-sm transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard"
+            className="press flex h-12 items-center gap-2 rounded-full border-3 border-ink bg-sun px-5 text-sm font-bold shadow-hard-sm transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard"
           >
             <Youtube className="h-4 w-4" />
             <span className="hidden sm:inline">ติดตามช่อง</span>
@@ -430,7 +475,9 @@ export default function App() {
       <header id="top" className="bg-dots bg-dot">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-16 pt-14 lg:grid-cols-[1.3fr_0.7fr] lg:items-start">
           <div className="flex flex-col gap-6">
-            <span className="flex w-fit items-center gap-2.5 rounded-full bg-ink px-4 py-2.5 text-paper">
+            {/* ลำดับเข้าฉากตอนโหลด: ป้าย → หัวข้อทีละบรรทัด → คำอธิบาย → ปุ่ม
+                ตัวเลข --d คือเวลาหน่วง (มิลลิวินาที) ทั้งชุดจบภายในราว 1 วินาที */}
+            <span style={{ "--d": "0ms" }} className="rise flex w-fit items-center gap-2.5 rounded-full bg-ink px-4 py-2.5 text-paper">
               <span className="h-2.5 w-2.5 rounded-full bg-run" />
               <span className="font-mono text-[11px] tracking-[0.18em]">PERSONAL BLOG — flukesociety.com</span>
             </span>
@@ -438,24 +485,24 @@ export default function App() {
             {/* ไทยมีสระบน-ล่างและวรรณยุกต์ ต้องกำหนด line-height ทุก breakpoint
                 ไม่งั้น utility ของ font-size จะรีเซ็ตกลับเป็น 1.0 แล้วสระบนโดนตัด */}
             <h1 className="text-6xl/[1.12] tracking-tight sm:text-7xl/[1.12] lg:text-[6rem]/[1.12]">
-              <span className="block text-game">เล่นเกม</span>
-              <span className="block text-run">ออกวิ่ง</span>
-              <span className="block text-eat">แล้วไปกิน</span>
+              <span style={{ "--d": "120ms" }} className="rise block text-game">เล่นเกม</span>
+              <span style={{ "--d": "260ms" }} className="rise block text-run">ออกวิ่ง</span>
+              <span style={{ "--d": "400ms" }} className="rise block text-eat">แล้วไปกิน</span>
             </h1>
 
-            <p className="font-mono text-sm tracking-[0.14em] text-ink-faint">PLAY. RUN. EAT.</p>
+            <p style={{ "--d": "540ms" }} className="rise font-mono text-sm tracking-[0.14em] text-ink-faint">PLAY. RUN. EAT.</p>
 
-            <p className="max-w-xl text-lg leading-thai text-ink-soft">
+            <p style={{ "--d": "620ms" }} className="rise max-w-xl text-lg leading-thai text-ink-soft">
               บล็อกส่วนตัวรวมความชอบ — เล่นเกมทุกแพลตฟอร์ม ออกเดินวิ่งสำรวจเมือง
               แล้วตามหาของอร่อยทั้งร้านดัง ร้านสะดวกซื้อ และเมนูทำเอง
             </p>
 
-            <div className="flex flex-wrap items-center gap-4">
+            <div style={{ "--d": "720ms" }} className="rise flex flex-wrap items-center gap-4">
               <a
                 href={SOCIAL_GAME.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-14 items-center gap-2.5 rounded-2xl border-3 border-ink bg-game px-7 text-[17px] font-bold text-white shadow-hard-md transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-lg"
+                className="press flex h-14 items-center gap-2.5 rounded-2xl border-3 border-ink bg-game px-7 text-[17px] font-bold text-white shadow-hard-md transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-lg"
               >
                 <Youtube className="h-5 w-5" /> ติดตามช่องเกม
               </a>
@@ -475,10 +522,12 @@ export default function App() {
               const Icon = j.theme.icon;
               const tilt = ["-rotate-2", "rotate-2 lg:ml-6", "-rotate-1 lg:ml-2"][i];
               return (
+                // ชั้นนอกลอยขึ้นลง (bob) ชั้นในเข้าฉาก (rise) แยกกันเพื่อไม่ให้แอนิเมชันทับกัน
+                <div key={j.href} style={{ "--d": `${1300 + i * 500}ms` }} className="bob">
                 <a
-                  key={j.href}
                   href={j.href}
-                  className={`flex items-center gap-4 rounded-[20px] border-3 border-ink p-5 shadow-hard-md transition hover:rotate-0 hover:-translate-y-1 ${j.theme.solid} ${tilt}`}
+                  style={{ "--d": `${560 + i * 140}ms` }}
+                  className={`rise flex items-center gap-4 rounded-[20px] border-3 border-ink p-5 shadow-hard-md transition hover:rotate-0 hover:-translate-y-1 ${j.theme.solid} ${tilt}`}
                 >
                   <Icon className="h-7 w-7 shrink-0" />
                   <span className="flex flex-1 flex-col gap-1">
@@ -489,6 +538,7 @@ export default function App() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </a>
+                </div>
               );
             })}
           </div>
@@ -516,8 +566,8 @@ export default function App() {
             <Empty icon={Gamepad2} text="ยังไม่มีคลิปในหมวดนี้" />
           ) : (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredGaming.map((item) => (
-                <MediaCard key={item.id} item={item} theme={THEME.game} />
+              {filteredGaming.map((item, i) => (
+                <MediaCard key={item.id} item={item} theme={THEME.game} index={i} />
               ))}
             </div>
           )}
@@ -578,8 +628,8 @@ export default function App() {
             <Empty icon={Utensils} text="ยังไม่มีเมนูในหมวดนี้" />
           ) : (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredFood.map((item) => (
-                <MediaCard key={item.id} item={item} theme={THEME.eat} />
+              {filteredFood.map((item, i) => (
+                <MediaCard key={item.id} item={item} theme={THEME.eat} index={i} />
               ))}
             </div>
           )}
@@ -594,14 +644,14 @@ export default function App() {
       {/* ===== about ===== */}
       <section id="about" className="bg-night bg-dots-light bg-dot text-paper">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 lg:grid-cols-[0.42fr_0.58fr] lg:items-start">
-          <div className="relative flex h-64 items-center justify-center overflow-hidden rounded-3xl border-3 border-paper bg-sun shadow-hard-light lg:h-80">
+          <Reveal className="relative flex h-64 items-center justify-center overflow-hidden rounded-3xl border-3 border-paper bg-sun shadow-hard-light lg:h-80">
             <span className="absolute inset-0 bg-stripes" />
             <span className="relative flex items-center gap-2 rounded-full border-2 border-ink bg-paper px-4 py-2.5 font-mono text-[11px] tracking-[0.12em] text-ink">
               <User className="h-4 w-4" /> [ใส่รูปตัวเองตรงนี้]
             </span>
-          </div>
+          </Reveal>
 
-          <div className="flex flex-col gap-5">
+          <Reveal delay={120} className="flex flex-col gap-5">
             <span className="font-mono text-[11px] tracking-[0.22em] text-sun">ABOUT ME — เกี่ยวกับผม</span>
             <h2 className="text-4xl/[1.3] lg:text-[2.75rem]/[1.3]">สวัสดีครับ</h2>
             <p className="text-[17px] leading-thai text-night-text">
@@ -636,7 +686,7 @@ export default function App() {
                 </a>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
 
         <div className="mx-auto max-w-6xl px-5 pb-12">
