@@ -1,0 +1,8 @@
+# กฎ header ของ Cloudflare Workers (ไฟล์นี้ไม่ถูกเสิร์ฟ แต่ถูกอ่านเป็นกฎ)
+# https://developers.cloudflare.com/workers/static-assets/headers/
+#
+# ไฟล์ใน /assets/ มีรหัส hash ในชื่อ (เช่น index-BSOp_vB2.js) ชื่อเปลี่ยนทุกครั้งที่เนื้อหาเปลี่ยน
+# จึงให้เบราว์เซอร์เก็บไว้ได้ 1 ปีโดยไม่ต้องถามเซิร์ฟเวอร์ซ้ำ
+# ส่วน index.html ไม่ได้อยู่ในกฎนี้ จึงยังถูกตรวจใหม่ทุกครั้ง ผู้ใช้เลยได้เวอร์ชันล่าสุดเสมอหลัง deploy
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

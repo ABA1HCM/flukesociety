@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import youtubeLatest from "./data/youtube-latest.json";
 import {
   Gamepad2, Monitor, Smartphone, Joystick, MapPin, Youtube, Play, Utensils,
   User, ExternalLink, Film, Star, Footprints, Flag, Route,
@@ -9,6 +10,7 @@ import {
    ✏️  วิธีเพิ่ม/แก้เนื้อหา:
    แก้ข้อมูลใน 3 ก้อนด้านล่างนี้ (GAMING / RUNS / FOOD)
    แล้ว commit ขึ้น GitHub — เว็บจะอัปเดตเองใน 1-2 นาที
+   (การ์ดเกม "ล่าสุด" อัปเดตเองจากช่อง YouTube ไม่ต้องแก้)
    ========================================================= */
 
 // ---------- helpers ----------
@@ -31,9 +33,12 @@ const FOOD_CATS = [
 ];
 
 /* =========================================================
-   1) เรื่องเกม — เพิ่มคลิปเกมตรงนี้
+   1) เรื่องเกม — คลิปที่เลือกเอง (ยอดนิยม / แนะนำ)
    platform: "pc" | "console" | "mobile"
    type: "youtube" | "tiktok"
+
+   การ์ด "ล่าสุด" ไม่ต้องแก้เอง: ระบบดึงคลิปใหม่จากช่อง YouTube ให้ทุก 6 ชั่วโมง
+   (ไฟล์ src/data/youtube-latest.json — อย่าแก้ไฟล์นั้นด้วยมือ เพราะจะถูกเขียนทับ)
    ========================================================= */
 const GAMING = [
   {
@@ -48,13 +53,28 @@ const GAMING = [
     url: "https://www.youtube.com/watch?v=xhUuWHuJzAM",
     desc: "คลิปที่อยากแนะนำให้ลองดู",
   },
-  {
-    id: 3, platform: "pc", type: "youtube", badge: "ล่าสุด",
-    title: "คลิปเกมล่าสุด",
-    url: "https://www.youtube.com/watch?v=KiiT9IgnKb4",
-    desc: "คอนเทนต์เกมใหม่ล่าสุดจากช่อง!",
-  },
 ];
+
+// คลิปอัตโนมัติจะอยู่ในปุ่มกรองไหน (ดูจากฟีดไม่รู้ว่าเล่นบนเครื่องอะไร)
+const LATEST_PLATFORM = "pc";
+
+// การ์ดล่าสุด: คลิปใหม่สุดของช่องที่ไม่ซ้ำกับคลิปที่เลือกเองไว้แล้ว วางไว้ใบแรก
+const pickedIds = GAMING.map((g) => getYouTubeId(g.url));
+const latestVideo = (youtubeLatest.videos || []).find((v) => !pickedIds.includes(v.id));
+const postedOn = (iso) =>
+  new Date(iso).toLocaleDateString("th-TH", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Bangkok" });
+const GAMING_SHOWN = [
+  latestVideo && {
+    id: `yt-${latestVideo.id}`,
+    platform: LATEST_PLATFORM,
+    type: "youtube",
+    badge: "ล่าสุด",
+    title: latestVideo.title,
+    url: latestVideo.url,
+    desc: `คลิปใหม่จากช่อง · ลงเมื่อ ${postedOn(latestVideo.published)}`,
+  },
+  ...GAMING,
+].filter(Boolean);
 
 /* =========================================================
    2) เรื่องวิ่ง — เพิ่มเส้นทางวิ่งตรงนี้
@@ -134,7 +154,9 @@ const THEME = {
   },
   eat: {
     label: "กิน", en: "FOOD", icon: Utensils,
-    solid: "bg-eat text-white",
+    // ตัวหนังสือบนพื้นส้มใช้สีหมึก: ขาวบนส้มได้ความต่างสีแค่ 3.6:1 อ่านยากกับตัวเล็ก
+    // หมึกบนส้มได้ 4.7:1 ผ่านเกณฑ์ 4.5:1 เหมือนการ์ดเขียวที่ใช้ตัวเข้มอยู่แล้ว
+    solid: "bg-eat text-ink",
     text: "text-eat",
     accentInk: "text-eat-ink",
     cover: "bg-eat",
@@ -146,47 +168,80 @@ const THEME = {
 // ห่อส่วนไหนก็ได้ ส่วนนั้นจะค่อย ๆ เลื่อนขึ้นตอนเข้าจอครั้งแรก
 // delay = หน่วงเป็นมิลลิวินาที ใช้ไล่ทีละใบในกริดให้ดูเป็นจังหวะ
 // ถ้าเครื่องเปิด "ลดการเคลื่อนไหว" หรือเบราว์เซอร์ไม่รองรับ จะแสดงทันทีเลย
+// ส่วนที่อยู่ในจออยู่แล้วตอนเปิดหน้า (หรือกดลิงก์มาถึง) แสดงทันทีไม่มีแอนิเมชัน
 function Reveal({ delay = 0, className = "", children }) {
   const ref = useRef(null);
   const [shown, setShown] = useState(false);
+  const [instant, setInstant] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (calm || !("IntersectionObserver" in window)) {
+    const inViewNow = () => {
+      const r = el.getBoundingClientRect();
+      return r.top < window.innerHeight && r.bottom > 0;
+    };
+    if (calm || !("IntersectionObserver" in window) || inViewNow()) {
+      setInstant(true);
       setShown(true);
       return;
     }
+    let guard = 0;
+    const show = () => {
+      setShown(true);
+      io.disconnect();
+      clearInterval(guard);
+    };
     const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShown(true);
-          io.disconnect();
-        }
-      },
+      ([entry]) => entry.isIntersecting && show(),
       { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
     );
     io.observe(el);
-    return () => io.disconnect();
+    // กันพลาด: ถ้าอยู่ในจอแล้วแต่ตัวตรวจจับไม่ทำงานด้วยเหตุใดก็ตาม ให้แสดงเองภายใน 1.5 วินาที
+    // เนื้อหาจะไม่ค้างเป็นช่องว่าง
+    guard = setInterval(() => inViewNow() && show(), 1500);
+    return () => {
+      io.disconnect();
+      clearInterval(guard);
+    };
   }, []);
 
   return (
     <div
       ref={ref}
       style={{ "--d": `${delay}ms` }}
-      className={`reveal ${shown ? "is-in" : ""} ${className}`}
+      className={`reveal ${shown ? "is-in" : ""} ${instant ? "is-instant" : ""} ${className}`}
     >
       {children}
     </div>
   );
 }
 
+// ---------- หยุดแอนิเมชันวนซ้ำเมื่อพ้นจอ ----------
+// ใส่ ref ที่ได้ให้กล่องไหนก็ได้ ตอนกล่องเลื่อนพ้นจอจะติด data-offscreen
+// แล้ว CSS (index.css) สั่งหยุดแอนิเมชันข้างในให้เอง ประหยัดแบตมือถือ
+function usePauseOffscreen() {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) el.removeAttribute("data-offscreen");
+      else el.setAttribute("data-offscreen", "");
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return ref;
+}
+
 // ---------- แถบข่าววิ่ง ----------
 function Ticker() {
+  const box = usePauseOffscreen();
   const run = RUNS[0];
   const items = [
-    GAMING[0] && `NOW PLAYING — ${GAMING[0].title}`,
+    GAMING_SHOWN[0] && `NOW PLAYING — ${GAMING_SHOWN[0].title}`,
     run && `CITY RUN — ${run.distance} / ${run.duration}`,
     FOOD[0] && `LAST MEAL — ${FOOD[0].title}`,
     "PLAY / RUN / EAT",
@@ -204,7 +259,7 @@ function Ticker() {
   );
 
   return (
-    <div className="overflow-hidden border-y-3 border-ink bg-night py-4 text-paper">
+    <div ref={box} className="overflow-hidden border-y-3 border-ink bg-night py-4 text-paper">
       <div className="flex w-max animate-marquee">
         {strip}
         {strip}
@@ -261,19 +316,30 @@ function SectionHead({ theme, title, lead }) {
 function MediaCard({ item, theme, index = 0 }) {
   const ytId = item.type === "youtube" ? getYouTubeId(item.url) : null;
   const hasLink = Boolean(item.url);
+  // ภาพปกจาก YouTube โหลดไม่ขึ้น (เน็ตหลุด โดนบล็อก) → ซ่อนภาพเสีย เหลือพื้นสีหมวดกับลายทางแทน
+  const [thumbFailed, setThumbFailed] = useState(false);
 
   return (
-    <Reveal delay={(index % 3) * 90} className="h-full">
+    <Reveal delay={(index % 3) * 60} className="h-full">
     <article className="group flex h-full flex-col overflow-hidden rounded-[20px] border-3 border-ink bg-white shadow-hard-md transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-lg">
+      {/* ภาพปกวางแบบลอย (absolute) ให้กรอบคงสัดส่วน 16:9 ภาพปก YouTube เป็น 4:3 มีแถบดำในตัว
+          ถ้าปล่อยให้ภาพดันกรอบ กรอบจะสูงเป็น 4:3 แล้วแถบดำโผล่ — แบบนี้ object-cover ตัดแถบดำออกพอดี */}
       <div className={`relative aspect-video border-b-3 border-ink ${theme.cover}`}>
         {ytId ? (
-          <a href={item.url} target="_blank" rel="noopener noreferrer" className="block h-full w-full">
-            <img
-              src={`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`}
-              alt={item.title}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
+          <a href={item.url} target="_blank" rel="noopener noreferrer" className="absolute inset-0 block">
+            {thumbFailed ? (
+              <span className="absolute inset-0 bg-stripes" />
+            ) : (
+              <img
+                src={`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`}
+                alt={item.title}
+                loading="lazy"
+                width="480"
+                height="360"
+                onError={() => setThumbFailed(true)}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            )}
             <span className="absolute inset-0 flex items-center justify-center bg-ink/25 opacity-0 transition-opacity group-hover:opacity-100">
               <span className="flex h-16 w-16 items-center justify-center rounded-full border-3 border-ink bg-paper shadow-hard-sm">
                 <Play className="h-6 w-6 fill-ink text-ink" />
@@ -294,7 +360,8 @@ function MediaCard({ item, theme, index = 0 }) {
             <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-ink px-3 py-1.5 font-mono text-[10px] tracking-[0.16em] text-paper">
               <Music2 className="h-3.5 w-3.5" /> TIKTOK
             </span>
-            <span className="absolute bottom-3 right-3 flex items-center gap-1 font-mono text-[10px] tracking-[0.14em] text-white">
+            {/* อยู่ในป้ายพื้นครีม: ตัวขาวบนพื้นส้มตรง ๆ อ่านยาก (ความต่างสีไม่ถึงเกณฑ์) */}
+            <span className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full border-2 border-ink bg-paper px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-ink">
               แตะเพื่อรับชม <ExternalLink className="h-3 w-3" />
             </span>
           </a>
@@ -316,7 +383,8 @@ function MediaCard({ item, theme, index = 0 }) {
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">
-        <h3 className="font-display text-lg font-extrabold leading-thai-tight">{item.title}</h3>
+        {/* ชื่อคลิปจาก YouTube มักยาว ตัดที่ 2 บรรทัดให้การ์ดสูงเท่ากัน ชื่อเต็มดูได้ตอนชี้เมาส์ */}
+        <h3 title={item.title} className="line-clamp-2 font-display text-lg font-extrabold leading-thai-tight">{item.title}</h3>
         {item.desc && <p className="text-sm leading-thai text-ink-muted">{item.desc}</p>}
         {item.location && (
           <p className={`mt-auto flex items-center gap-1.5 border-t-2 border-dashed border-paper-hair pt-3.5 font-mono text-[11px] ${theme.accentInk}`}>
@@ -354,7 +422,7 @@ function RunCard({ run }) {
           const st = STAGE[pt.stage] || STAGE.mid;
           const Icon = st.icon;
           return (
-            <Reveal key={i} delay={(i % 3) * 110} className="h-full">
+            <Reveal key={i} delay={(i % 3) * 60} className="h-full">
             <article className="flex h-full flex-col overflow-hidden rounded-[20px] border-3 border-ink bg-paper shadow-hard-md">
               <div className="relative h-44 border-b-3 border-ink bg-run">
                 <span className="absolute inset-0 bg-stripes" />
@@ -411,7 +479,7 @@ function FollowRow({ label, links }) {
 // ---------- ว่างเปล่า ----------
 function Empty({ icon: Icon, text }) {
   return (
-    <div className="flex flex-col items-center gap-3 rounded-[20px] border-3 border-dashed border-paper-line bg-paper py-16 text-ink-ghost">
+    <div className="flex flex-col items-center gap-3 rounded-[20px] border-3 border-dashed border-paper-line bg-paper py-16 text-ink-faint">
       <Icon className="h-10 w-10" />
       <span className="text-sm">{text}</span>
     </div>
@@ -419,11 +487,21 @@ function Empty({ icon: Icon, text }) {
 }
 
 // ---------- main ----------
+// ---------- ลิงก์หมวด (ใช้ทั้งเมนูจอกว้างและแถบชิปมือถือ) ----------
+// dot = จุดสีประจำหมวดหน้าชื่อบนมือถือ
+const NAV_LINKS = [
+  { href: "#gaming", th: "เกม", en: "GAMING", dot: "bg-game" },
+  { href: "#running", th: "วิ่ง", en: "RUNNING", dot: "bg-run" },
+  { href: "#food", th: "กิน", en: "FOOD", dot: "bg-eat" },
+  { href: "#about", th: "เกี่ยวกับ", en: "ABOUT" },
+];
+
 export default function App() {
   const [tab, setTab] = useState("all");
   const [foodTab, setFoodTab] = useState("all");
+  const heroRef = usePauseOffscreen();
 
-  const filteredGaming = tab === "all" ? GAMING : GAMING.filter((g) => g.platform === tab);
+  const filteredGaming = tab === "all" ? GAMING_SHOWN : GAMING_SHOWN.filter((g) => g.platform === tab);
   const filteredFood = foodTab === "all" ? FOOD : FOOD.filter((f) => f.cat === foodTab);
 
   const jump = [
@@ -434,12 +512,22 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      {/* ===== nav ===== */}
-      <nav className="sticky top-0 z-40 border-b-3 border-ink bg-paper/95 backdrop-blur-md">
+      {/* ลิงก์ซ่อนสำหรับคนใช้คีย์บอร์ด/โปรแกรมอ่านหน้าจอ: กด Tab ครั้งแรกจะโผล่ ข้ามเมนูไปที่เนื้อหาได้ */}
+      <a
+        href="#main"
+        className="sr-only z-50 rounded-full border-3 border-ink bg-sun px-5 py-3 font-bold focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        ข้ามไปที่เนื้อหา
+      </a>
+
+      {/* ===== แถบบน =====
+          จอกว้าง: ติดขอบบนตลอด มีเมนูหมวดในแถบ
+          มือถือ: แถวโลโก้เลื่อนหายไปตามปกติ แล้วแถบชิปหมวดด้านล่างติดขอบบนแทน (ประหยัดพื้นที่จอ) */}
+      <header className="z-40 bg-paper/95 backdrop-blur-md md:sticky md:top-0 md:border-b-3 md:border-ink">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-3.5">
           <a href="#top" className="flex items-center gap-3">
             <span className="flex h-11 w-11 items-center justify-center rounded-2xl border-3 border-ink bg-game text-paper shadow-hard-sm">
-              <Gamepad2 className="h-5 w-5" />
+              <Gamepad2 className="h-5 w-5" aria-hidden="true" />
             </span>
             <span className="flex flex-col leading-none">
               <span className="font-display text-lg font-extrabold">flukesociety.com</span>
@@ -447,37 +535,53 @@ export default function App() {
             </span>
           </a>
 
-          <div className="hidden items-center gap-7 md:flex">
-            {[
-              { href: "#gaming", th: "เกม", en: "GAMING" },
-              { href: "#running", th: "วิ่ง", en: "RUNNING" },
-              { href: "#food", th: "กิน", en: "FOOD" },
-              { href: "#about", th: "เกี่ยวกับ", en: "ABOUT" },
-            ].map((l) => (
+          <nav aria-label="เมนูหลัก" className="hidden items-center gap-7 md:flex">
+            {NAV_LINKS.map((l) => (
               <a key={l.href} href={l.href} className="flex flex-col leading-none transition hover:text-game">
                 <span className="text-[15px] font-semibold">{l.th}</span>
                 <span className="mt-1 font-mono text-[9px] tracking-[0.16em] text-ink-faint">{l.en}</span>
               </a>
             ))}
-          </div>
+          </nav>
 
           <a
             href="#about"
+            aria-label="ติดตามช่อง"
             className="press flex h-12 items-center gap-2 rounded-full border-3 border-ink bg-sun px-5 text-sm font-bold shadow-hard-sm transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard"
           >
-            <Youtube className="h-4 w-4" />
+            <Youtube className="h-4 w-4" aria-hidden="true" />
             <span className="hidden sm:inline">ติดตามช่อง</span>
           </a>
         </div>
+      </header>
+
+      {/* ===== แถบชิปหมวด (เฉพาะมือถือ) ===== */}
+      <nav
+        aria-label="หมวดหมู่"
+        className="sticky top-0 z-40 border-y-3 border-ink bg-paper/95 backdrop-blur-md md:hidden"
+      >
+        <div className="grid grid-cols-4 gap-2 px-3 py-2.5">
+          {NAV_LINKS.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="flex h-11 items-center justify-center gap-1.5 rounded-full border-2 border-ink bg-paper text-sm font-semibold active:bg-ink active:text-paper"
+            >
+              {l.dot && <span aria-hidden="true" className={`h-2 w-2 shrink-0 rounded-full ${l.dot}`} />}
+              {l.th}
+            </a>
+          ))}
+        </div>
       </nav>
 
+      <main id="main">
       {/* ===== hero ===== */}
-      <header id="top" className="bg-dots bg-dot">
+      <section id="top" ref={heroRef} className="bg-dots bg-dot">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-16 pt-14 lg:grid-cols-[1.3fr_0.7fr] lg:items-start">
           <div className="flex flex-col gap-6">
-            {/* ลำดับเข้าฉากตอนโหลด: ป้าย → หัวข้อทีละบรรทัด → คำอธิบาย → ปุ่ม
-                ตัวเลข --d คือเวลาหน่วง (มิลลิวินาที) ทั้งชุดจบภายในราว 1 วินาที */}
-            <span style={{ "--d": "0ms" }} className="rise flex w-fit items-center gap-2.5 rounded-full bg-ink px-4 py-2.5 text-paper">
+            {/* ข้อความและปุ่มหลักแสดงทันทีที่หน้าขึ้น ไม่มีแอนิเมชัน ไม่มีหน่วงเวลา
+                (เดิมไล่เข้าฉากนานเกือบ 1.5 วินาที ปุ่มต้องรอกว่าจะกดได้) */}
+            <span className="flex w-fit items-center gap-2.5 rounded-full bg-ink px-4 py-2.5 text-paper">
               <span className="h-2.5 w-2.5 rounded-full bg-run" />
               <span className="font-mono text-[11px] tracking-[0.18em]">PERSONAL BLOG — flukesociety.com</span>
             </span>
@@ -485,19 +589,19 @@ export default function App() {
             {/* ไทยมีสระบน-ล่างและวรรณยุกต์ ต้องกำหนด line-height ทุก breakpoint
                 ไม่งั้น utility ของ font-size จะรีเซ็ตกลับเป็น 1.0 แล้วสระบนโดนตัด */}
             <h1 className="text-6xl/[1.12] tracking-tight sm:text-7xl/[1.12] lg:text-[6rem]/[1.12]">
-              <span style={{ "--d": "120ms" }} className="rise block text-game">เล่นเกม</span>
-              <span style={{ "--d": "260ms" }} className="rise block text-run">ออกวิ่ง</span>
-              <span style={{ "--d": "400ms" }} className="rise block text-eat">แล้วไปกิน</span>
+              <span className="block text-game">เล่นเกม</span>
+              <span className="block text-run">ออกวิ่ง</span>
+              <span className="block text-eat">แล้วไปกิน</span>
             </h1>
 
-            <p style={{ "--d": "540ms" }} className="rise font-mono text-sm tracking-[0.14em] text-ink-faint">PLAY. RUN. EAT.</p>
+            <p className="font-mono text-sm tracking-[0.14em] text-ink-faint">PLAY. RUN. EAT.</p>
 
-            <p style={{ "--d": "620ms" }} className="rise max-w-xl text-lg leading-thai text-ink-soft">
+            <p className="max-w-xl text-lg leading-thai text-ink-soft">
               บล็อกส่วนตัวรวมความชอบ — เล่นเกมทุกแพลตฟอร์ม ออกเดินวิ่งสำรวจเมือง
               แล้วตามหาของอร่อยทั้งร้านดัง ร้านสะดวกซื้อ และเมนูทำเอง
             </p>
 
-            <div style={{ "--d": "720ms" }} className="rise flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <a
                 href={SOCIAL_GAME.youtube}
                 target="_blank"
@@ -523,18 +627,20 @@ export default function App() {
               const tilt = ["-rotate-2", "rotate-2 lg:ml-6", "-rotate-1 lg:ml-2"][i];
               return (
                 // ชั้นนอกลอยขึ้นลง (bob) ชั้นในเข้าฉาก (rise) แยกกันเพื่อไม่ให้แอนิเมชันทับกัน
-                <div key={j.href} style={{ "--d": `${1300 + i * 500}ms` }} className="bob">
+                // เข้าฉากสั้น 0.25 วินาที ไล่กันใบละ 60 ms — เป็นของตกแต่ง ไม่บังเนื้อหาหลัก
+                <div key={j.href} style={{ "--d": `${400 + i * 500}ms` }} className="bob">
                 <a
                   href={j.href}
-                  style={{ "--d": `${560 + i * 140}ms` }}
+                  style={{ "--d": `${i * 60}ms` }}
                   className={`rise flex items-center gap-4 rounded-[20px] border-3 border-ink p-5 shadow-hard-md transition hover:rotate-0 hover:-translate-y-1 ${j.theme.solid} ${tilt}`}
                 >
-                  <Icon className="h-7 w-7 shrink-0" />
+                  <Icon className="h-7 w-7 shrink-0" aria-hidden="true" />
                   <span className="flex flex-1 flex-col gap-1">
                     <span className="font-display text-xl font-extrabold leading-thai-tight">{j.theme.label}</span>
-                    <span className="font-mono text-[11px] opacity-90">{j.note}</span>
+                    {/* ไม่ลดความทึบตัวหนังสือเล็ก: เดิม opacity-90 ทำให้ความต่างสีตกต่ำกว่าเกณฑ์ */}
+                    <span className="font-mono text-[11px]">{j.note}</span>
                   </span>
-                  <span className="font-mono text-[10px] tracking-[0.18em] opacity-80">
+                  <span aria-hidden="true" className="font-mono text-[10px] tracking-[0.18em]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </a>
@@ -543,7 +649,7 @@ export default function App() {
             })}
           </div>
         </div>
-      </header>
+      </section>
 
       <Ticker />
 
@@ -665,10 +771,12 @@ export default function App() {
 
             <div className="mt-2 grid gap-4 sm:grid-cols-2">
               {[
-                { platform: "YOUTUBE", label: "ช่องเกมหลัก", handle: "@FLUKEGAMEROFFICIAL", href: SOCIAL_GAME.youtube, ring: "shadow-[7px_7px_0_#6C4AF6]", tint: "text-game" },
-                { platform: "TIKTOK", label: "คลิปสั้น เกมและของกิน", handle: "@flukegamerofficial", href: SOCIAL_GAME.tiktok, ring: "shadow-[7px_7px_0_#EF5327]", tint: "text-eat" },
-                { platform: "FACEBOOK", label: "เพจเกม", handle: "flukegamerth", href: SOCIAL_GAME.facebook, ring: "shadow-[7px_7px_0_#FFC93C]", tint: "text-sun" },
-                { platform: "FACEBOOK", label: "เพจวิ่ง", handle: "FlukerunnerOfficial", href: SOCIAL_RUN.facebook, ring: "shadow-[7px_7px_0_#0FA37F]", tint: "text-run" },
+                // สีประจำช่องอยู่ที่เงาของการ์ด (ring) ตัวหนังสือชื่อแพลตฟอร์มใช้สีครีม
+                // เพราะม่วงและส้มบนพื้นเข้มได้ความต่างสีแค่ 2.9:1 และ 4.3:1 อ่านยากที่ตัวขนาดเล็ก
+                { platform: "YOUTUBE", label: "ช่องเกมหลัก", handle: "@FLUKEGAMEROFFICIAL", href: SOCIAL_GAME.youtube, ring: "shadow-[7px_7px_0_#6C4AF6]", tint: "text-night-text" },
+                { platform: "TIKTOK", label: "คลิปสั้น เกมและของกิน", handle: "@flukegamerofficial", href: SOCIAL_GAME.tiktok, ring: "shadow-[7px_7px_0_#EF5327]", tint: "text-night-text" },
+                { platform: "FACEBOOK", label: "เพจเกม", handle: "flukegamerth", href: SOCIAL_GAME.facebook, ring: "shadow-[7px_7px_0_#FFC93C]", tint: "text-night-text" },
+                { platform: "FACEBOOK", label: "เพจวิ่ง", handle: "FlukerunnerOfficial", href: SOCIAL_RUN.facebook, ring: "shadow-[7px_7px_0_#0FA37F]", tint: "text-night-text" },
               ].map((s) => (
                 <a
                   key={s.href}
@@ -688,14 +796,17 @@ export default function App() {
             </div>
           </Reveal>
         </div>
+      </section>
+      </main>
 
+      <footer className="bg-night bg-dots-light bg-dot">
         <div className="mx-auto max-w-6xl px-5 pb-12">
           <div className="flex flex-wrap items-center justify-between gap-4 border-t-2 border-dashed border-night-line pt-6 font-mono text-[11px] tracking-[0.12em] text-night-text">
             <span>© 2026 flukesociety.com — Play · Run · Eat</span>
             <span>PLAY / RUN / EAT</span>
           </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }

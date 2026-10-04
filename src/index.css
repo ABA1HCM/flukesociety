@@ -5,6 +5,21 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* กดลิงก์หมวดแล้วหัวข้อต้องไม่ไปจมใต้แถบเมนูที่ติดขอบบน
+       มือถือ: แถบชิปหมวดสูง ~66px / จอกว้าง: แถบเมนูเต็มสูง ~79px (เผื่อระยะหายใจ 16px) */
+    scroll-padding-top: 82px;
+  }
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 96px;
+    }
+  }
+
+  /* กรอบโฟกัสตอนใช้คีย์บอร์ด (ไม่ขึ้นตอนคลิกเมาส์) — สีม่วงหนาให้เห็นชัดบนทุกพื้น */
+  :focus-visible {
+    outline: 3px solid #6c4af6;
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 
   body {
@@ -43,11 +58,11 @@
    ถ้าใช้ตัวเดียวกันจะทับกันจนการ์ดเอียงหรือ hover เพี้ยน
    ========================================================= */
 
-/* เข้าฉากตอนโหลดหน้า: หัวข้อใหญ่เด้งขึ้นทีละบรรทัด
-   หน่วงเวลาด้วยตัวแปร --d ที่ตั้งไว้ใน App.jsx
-   ห้ามใช้ overflow:hidden มาซ่อนตัวอักษร เพราะสระบน-ล่างของไทยจะโดนตัด */
+/* เข้าฉากตอนโหลดหน้า — ใช้กับการ์ดสามหมวดในหน้าแรกเท่านั้น
+   หัวข้อ คำอธิบาย และปุ่มหลักไม่มีแอนิเมชันแล้ว เพื่อให้เห็นและกดได้ทันทีที่หน้าขึ้น
+   ห้ามใช้ opacity:0 กับเนื้อหาสำคัญ เพราะทั้งคนและ Google จะนับว่ามันยังไม่แสดง */
 @keyframes rise {
-  from { opacity: 0; translate: 0 28px; }
+  from { opacity: 0; translate: 0 12px; }
   to   { opacity: 1; translate: 0 0; }
 }
 
@@ -58,7 +73,7 @@
 }
 
 .rise {
-  animation: rise 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: rise 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   animation-delay: var(--d, 0ms);
 }
 
@@ -67,18 +82,45 @@
   animation-delay: var(--d, 0ms);
 }
 
-/* โผล่ตามการเลื่อนหน้า: เริ่มจางและต่ำลง แล้วเลื่อนขึ้นเมื่อเข้าจอ */
+/* มือถือ: ปิดการ์ดลอย ประหยัดแบตและไม่ให้หน้าดูไหวตอนอ่าน */
+@media (max-width: 767px) {
+  .bob {
+    animation: none;
+  }
+}
+
+/* หยุดแอนิเมชันที่วนไม่รู้จบเมื่อส่วนนั้นเลื่อนพ้นจอ (App.jsx ใส่ data-offscreen ให้) */
+[data-offscreen] .bob,
+[data-offscreen].animate-marquee,
+[data-offscreen] .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* โผล่ตามการเลื่อนหน้า: เริ่มจางและต่ำลงเล็กน้อย แล้วเลื่อนขึ้นเมื่อเข้าจอ
+   สั้นลงจากเดิม (0.7s → 0.35s) ให้รู้สึกไว ไม่ต้องรอ */
 .reveal {
   opacity: 0;
-  translate: 0 26px;
+  translate: 0 14px;
   transition:
-    opacity 0.6s ease,
-    translate 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    opacity 0.3s ease,
+    translate 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
   transition-delay: var(--d, 0ms);
 }
 .reveal.is-in {
   opacity: 1;
   translate: 0 0;
+}
+/* ส่วนที่อยู่ในจออยู่แล้วตอนเปิดหน้า ให้แสดงเลยไม่ต้องเล่นแอนิเมชัน */
+.reveal.is-instant {
+  transition: none;
+}
+
+/* สั่งพิมพ์หน้าเว็บ: แสดงทุกอย่าง ไม่งั้นส่วนที่ยังไม่เลื่อนผ่านจะหายไปจากกระดาษ */
+@media print {
+  .reveal {
+    opacity: 1;
+    translate: none;
+  }
 }
 
 /* กดปุ่มแล้วยุบลงเหมือนกดสติกเกอร์: ขยับเข้าหาเงาจนเงาหาย

@@ -1,0 +1,44 @@
+# อัปเดตคลิปเกมล่าสุดบนเว็บอัตโนมัติ
+# ทุก 6 ชั่วโมง เช็คช่อง YouTube ถ้ามีคลิปใหม่จะคอมมิต src/data/youtube-latest.json เข้า main
+# แล้ว Cloudflare จะบิลด์และขึ้นเว็บให้เองเหมือนตอนแก้ไฟล์ปกติ
+# กดรันเองได้ที่แท็บ Actions → "YouTube latest" → Run workflow
+name: YouTube latest
+
+on:
+  schedule:
+    # เวลาเป็น UTC: 00:15, 06:15, 12:15, 18:15 = 07:15, 13:15, 19:15, 01:15 เวลาไทย
+    - cron: "15 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: youtube-latest
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: ดึงคลิปล่าสุดจากช่อง
+        run: node scripts/fetch-youtube.mjs
+
+      - name: คอมมิตถ้ามีคลิปใหม่
+        run: |
+          if git diff --quiet -- src/data/youtube-latest.json; then
+            echo "ไม่มีอะไรเปลี่ยน"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/youtube-latest.json
+          git commit -m "Update latest YouTube clips"
+          git push
