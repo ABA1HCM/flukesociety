@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import youtubeLatest from "./data/youtube-latest.json";
 import {
   Gamepad2, Monitor, Smartphone, Joystick, MapPin, Youtube, Play, Utensils,
   User, ExternalLink, Film, Star, Footprints, Flag, Route,
@@ -9,6 +10,7 @@ import {
    ✏️  วิธีเพิ่ม/แก้เนื้อหา:
    แก้ข้อมูลใน 3 ก้อนด้านล่างนี้ (GAMING / RUNS / FOOD)
    แล้ว commit ขึ้น GitHub — เว็บจะอัปเดตเองใน 1-2 นาที
+   (การ์ดเกม "ล่าสุด" อัปเดตเองจากช่อง YouTube ไม่ต้องแก้)
    ========================================================= */
 
 // ---------- helpers ----------
@@ -31,9 +33,12 @@ const FOOD_CATS = [
 ];
 
 /* =========================================================
-   1) เรื่องเกม — เพิ่มคลิปเกมตรงนี้
+   1) เรื่องเกม — คลิปที่เลือกเอง (ยอดนิยม / แนะนำ)
    platform: "pc" | "console" | "mobile"
    type: "youtube" | "tiktok"
+
+   การ์ด "ล่าสุด" ไม่ต้องแก้เอง: ระบบดึงคลิปใหม่จากช่อง YouTube ให้ทุก 6 ชั่วโมง
+   (ไฟล์ src/data/youtube-latest.json — อย่าแก้ไฟล์นั้นด้วยมือ เพราะจะถูกเขียนทับ)
    ========================================================= */
 const GAMING = [
   {
@@ -48,13 +53,28 @@ const GAMING = [
     url: "https://www.youtube.com/watch?v=xhUuWHuJzAM",
     desc: "คลิปที่อยากแนะนำให้ลองดู",
   },
-  {
-    id: 3, platform: "pc", type: "youtube", badge: "ล่าสุด",
-    title: "คลิปเกมล่าสุด",
-    url: "https://www.youtube.com/watch?v=KiiT9IgnKb4",
-    desc: "คอนเทนต์เกมใหม่ล่าสุดจากช่อง!",
-  },
 ];
+
+// คลิปอัตโนมัติจะอยู่ในปุ่มกรองไหน (ดูจากฟีดไม่รู้ว่าเล่นบนเครื่องอะไร)
+const LATEST_PLATFORM = "pc";
+
+// การ์ดล่าสุด: คลิปใหม่สุดของช่องที่ไม่ซ้ำกับคลิปที่เลือกเองไว้แล้ว วางไว้ใบแรก
+const pickedIds = GAMING.map((g) => getYouTubeId(g.url));
+const latestVideo = (youtubeLatest.videos || []).find((v) => !pickedIds.includes(v.id));
+const postedOn = (iso) =>
+  new Date(iso).toLocaleDateString("th-TH", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Bangkok" });
+const GAMING_SHOWN = [
+  latestVideo && {
+    id: `yt-${latestVideo.id}`,
+    platform: LATEST_PLATFORM,
+    type: "youtube",
+    badge: "ล่าสุด",
+    title: latestVideo.title,
+    url: latestVideo.url,
+    desc: `คลิปใหม่จากช่อง · ลงเมื่อ ${postedOn(latestVideo.published)}`,
+  },
+  ...GAMING,
+].filter(Boolean);
 
 /* =========================================================
    2) เรื่องวิ่ง — เพิ่มเส้นทางวิ่งตรงนี้
@@ -221,7 +241,7 @@ function Ticker() {
   const box = usePauseOffscreen();
   const run = RUNS[0];
   const items = [
-    GAMING[0] && `NOW PLAYING — ${GAMING[0].title}`,
+    GAMING_SHOWN[0] && `NOW PLAYING — ${GAMING_SHOWN[0].title}`,
     run && `CITY RUN — ${run.distance} / ${run.duration}`,
     FOOD[0] && `LAST MEAL — ${FOOD[0].title}`,
     "PLAY / RUN / EAT",
@@ -302,9 +322,11 @@ function MediaCard({ item, theme, index = 0 }) {
   return (
     <Reveal delay={(index % 3) * 60} className="h-full">
     <article className="group flex h-full flex-col overflow-hidden rounded-[20px] border-3 border-ink bg-white shadow-hard-md transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard-lg">
+      {/* ภาพปกวางแบบลอย (absolute) ให้กรอบคงสัดส่วน 16:9 ภาพปก YouTube เป็น 4:3 มีแถบดำในตัว
+          ถ้าปล่อยให้ภาพดันกรอบ กรอบจะสูงเป็น 4:3 แล้วแถบดำโผล่ — แบบนี้ object-cover ตัดแถบดำออกพอดี */}
       <div className={`relative aspect-video border-b-3 border-ink ${theme.cover}`}>
         {ytId ? (
-          <a href={item.url} target="_blank" rel="noopener noreferrer" className="block h-full w-full">
+          <a href={item.url} target="_blank" rel="noopener noreferrer" className="absolute inset-0 block">
             {thumbFailed ? (
               <span className="absolute inset-0 bg-stripes" />
             ) : (
@@ -315,7 +337,7 @@ function MediaCard({ item, theme, index = 0 }) {
                 width="480"
                 height="360"
                 onError={() => setThumbFailed(true)}
-                className="h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover"
               />
             )}
             <span className="absolute inset-0 flex items-center justify-center bg-ink/25 opacity-0 transition-opacity group-hover:opacity-100">
@@ -361,7 +383,8 @@ function MediaCard({ item, theme, index = 0 }) {
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">
-        <h3 className="font-display text-lg font-extrabold leading-thai-tight">{item.title}</h3>
+        {/* ชื่อคลิปจาก YouTube มักยาว ตัดที่ 2 บรรทัดให้การ์ดสูงเท่ากัน ชื่อเต็มดูได้ตอนชี้เมาส์ */}
+        <h3 title={item.title} className="line-clamp-2 font-display text-lg font-extrabold leading-thai-tight">{item.title}</h3>
         {item.desc && <p className="text-sm leading-thai text-ink-muted">{item.desc}</p>}
         {item.location && (
           <p className={`mt-auto flex items-center gap-1.5 border-t-2 border-dashed border-paper-hair pt-3.5 font-mono text-[11px] ${theme.accentInk}`}>
@@ -478,7 +501,7 @@ export default function App() {
   const [foodTab, setFoodTab] = useState("all");
   const heroRef = usePauseOffscreen();
 
-  const filteredGaming = tab === "all" ? GAMING : GAMING.filter((g) => g.platform === tab);
+  const filteredGaming = tab === "all" ? GAMING_SHOWN : GAMING_SHOWN.filter((g) => g.platform === tab);
   const filteredFood = foodTab === "all" ? FOOD : FOOD.filter((f) => f.cat === foodTab);
 
   const jump = [
