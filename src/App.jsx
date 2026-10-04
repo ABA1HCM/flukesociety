@@ -42,21 +42,37 @@ const FOOD_CATS = [
    ========================================================= */
 const GAMING = [
   {
-    id: 1, platform: "pc", type: "youtube", badge: "ยอดนิยม",
+    id: 1, platform: "console", type: "youtube", badge: "ยอดนิยม",
     title: "คลิปเกมยอดนิยม",
     url: "https://www.youtube.com/watch?v=oAdGhJzaHFY",
     desc: "คลิปที่คนดูเยอะที่สุด ห้ามพลาด!",
   },
   {
-    id: 2, platform: "pc", type: "youtube", badge: "แนะนำ",
+    id: 2, platform: "console", type: "youtube", badge: "แนะนำ",
     title: "คลิปเกมแนะนำ",
     url: "https://www.youtube.com/watch?v=xhUuWHuJzAM",
     desc: "คลิปที่อยากแนะนำให้ลองดู",
   },
 ];
 
-// คลิปอัตโนมัติจะอยู่ในปุ่มกรองไหน (ดูจากฟีดไม่รู้ว่าเล่นบนเครื่องอะไร)
-const LATEST_PLATFORM = "pc";
+/* =========================================================
+   ✏️ ชื่อเกม → เครื่องที่เล่น (ใช้กับการ์ด "ล่าสุด" ที่ดึงมาเอง)
+
+   ระบบดูว่าชื่อคลิปมีคำใน match ไหม (ตัวพิมพ์เล็ก/ใหญ่ไม่สำคัญ) แล้วใส่หมวดตาม platform
+   ตัวอย่าง: คลิปชื่อ "... Game Onimusha Way of the Sword" มีคำว่า Onimusha → Console
+
+   เริ่มเล่นเกมใหม่เมื่อไหร่ ให้เพิ่มหนึ่งบรรทัด เช่น
+     { match: "Elden Ring", platform: "pc" },
+   เกมที่ยังไม่มีในตารางจะแสดงเฉพาะตอนกดปุ่ม "ทั้งหมด" (ไม่เดาหมวดให้ เพราะเดาผิดแย่กว่า)
+   platform: "pc" | "console" | "mobile"
+   ========================================================= */
+const GAME_PLATFORMS = [
+  { match: "Onimusha", platform: "console" },
+  { match: "Borderlands", platform: "console" },
+];
+
+const platformFromTitle = (title) =>
+  GAME_PLATFORMS.find((g) => title.toLowerCase().includes(g.match.toLowerCase()))?.platform || null;
 
 // การ์ดล่าสุด: คลิปใหม่สุดของช่องที่ไม่ซ้ำกับคลิปที่เลือกเองไว้แล้ว วางไว้ใบแรก
 const pickedIds = GAMING.map((g) => getYouTubeId(g.url));
@@ -66,7 +82,7 @@ const postedOn = (iso) =>
 const GAMING_SHOWN = [
   latestVideo && {
     id: `yt-${latestVideo.id}`,
-    platform: LATEST_PLATFORM,
+    platform: platformFromTitle(latestVideo.title),
     type: "youtube",
     badge: "ล่าสุด",
     title: latestVideo.title,
