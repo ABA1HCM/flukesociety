@@ -1,7 +1,13 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-04T13:54:57.473Z",
+  "updatedAt": "2026-10-05T14:44:47.814Z",
   "videos": [
+    {
+      "id": "WePOGRIQ9wk",
+      "title": "Console - Greater Nue Boss Fight & The Path to a New Quest Game Onimusha Way of the Sword",
+      "published": "2026-10-05T13:00:11+00:00",
+      "url": "https://www.youtube.com/watch?v=WePOGRIQ9wk"
+    },
     {
       "id": "ZLUfhej0ZS8",
       "title": "Underground Mechanisms, Prison Infiltration & Duo Boss Fight Game Onimusha Way of the Sword",
@@ -31,12 +37,6 @@
       "title": "Clash with Byakue & Uncovering the Hidden Oni Power Game Onimusha Way of the Sword",
       "published": "2026-09-30T13:00:16+00:00",
       "url": "https://www.youtube.com/watch?v=emsZIc7aBY4"
-    },
-    {
-      "id": "75yPWXIJOSI",
-      "title": "Stone Statue Puzzle & Clash with Rasho-gan Game Onimusha Way of the Sword",
-      "published": "2026-09-29T13:00:27+00:00",
-      "url": "https://www.youtube.com/watch?v=75yPWXIJOSI"
     }
   ]
 }
