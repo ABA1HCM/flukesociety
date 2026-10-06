@@ -1,7 +1,13 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-05T14:44:47.814Z",
+  "updatedAt": "2026-10-06T18:24:20.732Z",
   "videos": [
+    {
+      "id": "cTTl0O7pSwE",
+      "title": "Console - Through the Cursed Temple to the Final Sword Duel Game Onimusha Way of the Sword",
+      "published": "2026-10-06T13:00:17+00:00",
+      "url": "https://www.youtube.com/watch?v=cTTl0O7pSwE"
+    },
     {
       "id": "WePOGRIQ9wk",
       "title": "Console - Greater Nue Boss Fight & The Path to a New Quest Game Onimusha Way of the Sword",
@@ -31,12 +37,6 @@
       "title": "Fighting Through the Village, Boss Fight & Material Hunt Game Onimusha Way Of The Sword",
       "published": "2026-10-01T13:00:40+00:00",
       "url": "https://www.youtube.com/watch?v=XMzd7c8TBkU"
-    },
-    {
-      "id": "emsZIc7aBY4",
-      "title": "Clash with Byakue & Uncovering the Hidden Oni Power Game Onimusha Way of the Sword",
-      "published": "2026-09-30T13:00:16+00:00",
-      "url": "https://www.youtube.com/watch?v=emsZIc7aBY4"
     }
   ]
 }
