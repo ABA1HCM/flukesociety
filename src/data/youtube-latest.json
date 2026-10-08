@@ -1,7 +1,13 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-07T13:28:06.884Z",
+  "updatedAt": "2026-10-08T13:34:03.647Z",
   "videos": [
+    {
+      "id": "ksDmIBoodVE",
+      "title": "Console - Temple Battle & Sword Duel in the Rain Game Onimusha Way of the Sword",
+      "published": "2026-10-08T13:00:06+00:00",
+      "url": "https://www.youtube.com/watch?v=ksDmIBoodVE"
+    },
     {
       "id": "MDgZ_IfDtSM",
       "title": "Console - Battle on the Bridge & The 'Shadow Fall' Quest Game Onimusha Way of the Sword",
@@ -31,12 +37,6 @@
       "title": "Night Mission, Boss Fight & Underground Puzzles Game Onimusha Way of the Sword",
       "published": "2026-10-03T13:00:04+00:00",
       "url": "https://www.youtube.com/watch?v=QXDoNHrkhjo"
-    },
-    {
-      "id": "b5vRi0XDEEM",
-      "title": "Storming the Temple Grounds Battling to the Sanctuary Boss Game Onimusha Way Of The Sword",
-      "published": "2026-10-02T13:00:04+00:00",
-      "url": "https://www.youtube.com/watch?v=b5vRi0XDEEM"
     }
   ]
 }
