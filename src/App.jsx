@@ -39,6 +39,15 @@ const FOOD_CATS = [
 
    การ์ด "ล่าสุด" ไม่ต้องแก้เอง: ระบบดึงคลิปใหม่จากช่อง YouTube ให้ทุก 6 ชั่วโมง
    (ไฟล์ src/data/youtube-latest.json — อย่าแก้ไฟล์นั้นด้วยมือ เพราะจะถูกเขียนทับ)
+
+   ✏️ การ์ด "ล่าสุด" จะอยู่ในปุ่มกรองไหน ดูจาก "แท็กในคำอธิบายคลิป" บน YouTube
+      ใส่แท็กเครื่องตอนอัปโหลด เช่น  #Onimusha #FLUKEGAMER #Gameplay #PS5
+        #PC              → PC
+        #Console #PS5 #PS4 #Xbox #Switch → Console
+        #Mobile #Android #iOS            → Mobile
+      ไม่มีแท็กเครื่อง → แสดงเฉพาะตอนกดปุ่ม "ทั้งหมด"
+      แก้แท็กของคลิปเก่าบน YouTube ได้ เว็บจะเปลี่ยนตามภายในรอบถัดไป (ไม่เกิน 6 ชั่วโมง)
+      รายการแท็กทั้งหมดอยู่ที่ scripts/platform-tags.mjs
    ========================================================= */
 const GAMING = [
   {
@@ -55,25 +64,6 @@ const GAMING = [
   },
 ];
 
-/* =========================================================
-   ✏️ ชื่อเกม → เครื่องที่เล่น (ใช้กับการ์ด "ล่าสุด" ที่ดึงมาเอง)
-
-   ระบบดูว่าชื่อคลิปมีคำใน match ไหม (ตัวพิมพ์เล็ก/ใหญ่ไม่สำคัญ) แล้วใส่หมวดตาม platform
-   ตัวอย่าง: คลิปชื่อ "... Game Onimusha Way of the Sword" มีคำว่า Onimusha → Console
-
-   เริ่มเล่นเกมใหม่เมื่อไหร่ ให้เพิ่มหนึ่งบรรทัด เช่น
-     { match: "Elden Ring", platform: "pc" },
-   เกมที่ยังไม่มีในตารางจะแสดงเฉพาะตอนกดปุ่ม "ทั้งหมด" (ไม่เดาหมวดให้ เพราะเดาผิดแย่กว่า)
-   platform: "pc" | "console" | "mobile"
-   ========================================================= */
-const GAME_PLATFORMS = [
-  { match: "Onimusha", platform: "console" },
-  { match: "Borderlands", platform: "console" },
-];
-
-const platformFromTitle = (title) =>
-  GAME_PLATFORMS.find((g) => title.toLowerCase().includes(g.match.toLowerCase()))?.platform || null;
-
 // การ์ดล่าสุด: คลิปใหม่สุดของช่องที่ไม่ซ้ำกับคลิปที่เลือกเองไว้แล้ว วางไว้ใบแรก
 const pickedIds = GAMING.map((g) => getYouTubeId(g.url));
 const latestVideo = (youtubeLatest.videos || []).find((v) => !pickedIds.includes(v.id));
@@ -82,7 +72,7 @@ const postedOn = (iso) =>
 const GAMING_SHOWN = [
   latestVideo && {
     id: `yt-${latestVideo.id}`,
-    platform: platformFromTitle(latestVideo.title),
+    platform: latestVideo.platform || null, // มาจากแท็กในคำอธิบายคลิป (ดูหัวข้อด้านบน)
     type: "youtube",
     badge: "ล่าสุด",
     title: latestVideo.title,
