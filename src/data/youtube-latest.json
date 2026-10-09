@@ -1,41 +1,47 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-09T13:24:33.564Z",
+  "updatedAt": "2026-10-09T22:40:31.233Z",
   "videos": [
     {
       "id": "vXvnhroHsnI",
       "title": "Console - Braving the Rift & Okuni's Performance Game Onimusha Way of the Sword",
       "published": "2026-10-09T13:00:07+00:00",
+      "platform": null,
       "url": "https://www.youtube.com/watch?v=vXvnhroHsnI"
     },
     {
       "id": "ksDmIBoodVE",
       "title": "Console - Temple Battle & Sword Duel in the Rain Game Onimusha Way of the Sword",
       "published": "2026-10-08T13:00:06+00:00",
+      "platform": null,
       "url": "https://www.youtube.com/watch?v=ksDmIBoodVE"
     },
     {
       "id": "MDgZ_IfDtSM",
       "title": "Console - Battle on the Bridge & The 'Shadow Fall' Quest Game Onimusha Way of the Sword",
       "published": "2026-10-07T13:00:31+00:00",
+      "platform": null,
       "url": "https://www.youtube.com/watch?v=MDgZ_IfDtSM"
     },
     {
       "id": "cTTl0O7pSwE",
       "title": "Console - Through the Cursed Temple to the Final Sword Duel Game Onimusha Way of the Sword",
       "published": "2026-10-06T13:00:17+00:00",
+      "platform": null,
       "url": "https://www.youtube.com/watch?v=cTTl0O7pSwE"
     },
     {
       "id": "WePOGRIQ9wk",
       "title": "Console - Greater Nue Boss Fight & The Path to a New Quest Game Onimusha Way of the Sword",
       "published": "2026-10-05T13:00:11+00:00",
+      "platform": null,
       "url": "https://www.youtube.com/watch?v=WePOGRIQ9wk"
     },
     {
       "id": "ZLUfhej0ZS8",
       "title": "Underground Mechanisms, Prison Infiltration & Duo Boss Fight Game Onimusha Way of the Sword",
       "published": "2026-10-04T13:00:18+00:00",
+      "platform": null,
       "url": "https://www.youtube.com/watch?v=ZLUfhej0ZS8"
     }
   ]
