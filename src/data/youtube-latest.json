@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-09T22:40:31.233Z",
+  "updatedAt": "2026-10-10T21:47:03.085Z",
   "videos": [
+    {
+      "id": "OGibeTmaXaM",
+      "title": "Console - Storming the Fortress & Battling Mountain Enemies Game Onimusha Way of the Sword",
+      "published": "2026-10-10T13:00:39+00:00",
+      "platform": null,
+      "url": "https://www.youtube.com/watch?v=OGibeTmaXaM"
+    },
     {
       "id": "vXvnhroHsnI",
       "title": "Console - Braving the Rift & Okuni's Performance Game Onimusha Way of the Sword",
@@ -36,13 +43,6 @@
       "published": "2026-10-05T13:00:11+00:00",
       "platform": null,
       "url": "https://www.youtube.com/watch?v=WePOGRIQ9wk"
-    },
-    {
-      "id": "ZLUfhej0ZS8",
-      "title": "Underground Mechanisms, Prison Infiltration & Duo Boss Fight Game Onimusha Way of the Sword",
-      "published": "2026-10-04T13:00:18+00:00",
-      "platform": null,
-      "url": "https://www.youtube.com/watch?v=ZLUfhej0ZS8"
     }
   ]
 }
