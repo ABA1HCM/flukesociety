@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-10T21:47:03.085Z",
+  "updatedAt": "2026-10-11T21:59:53.595Z",
   "videos": [
+    {
+      "id": "MjpvzmkuSGo",
+      "title": "Console - Rescuing Villagers in the Caverns The Finale Blade Showdown Game Onimusha Way of the Sword",
+      "published": "2026-10-11T13:00:28+00:00",
+      "platform": null,
+      "url": "https://www.youtube.com/watch?v=MjpvzmkuSGo"
+    },
     {
       "id": "OGibeTmaXaM",
       "title": "Console - Storming the Fortress & Battling Mountain Enemies Game Onimusha Way of the Sword",
@@ -36,13 +43,6 @@
       "published": "2026-10-06T13:00:17+00:00",
       "platform": null,
       "url": "https://www.youtube.com/watch?v=cTTl0O7pSwE"
-    },
-    {
-      "id": "WePOGRIQ9wk",
-      "title": "Console - Greater Nue Boss Fight & The Path to a New Quest Game Onimusha Way of the Sword",
-      "published": "2026-10-05T13:00:11+00:00",
-      "platform": null,
-      "url": "https://www.youtube.com/watch?v=WePOGRIQ9wk"
     }
   ]
 }
