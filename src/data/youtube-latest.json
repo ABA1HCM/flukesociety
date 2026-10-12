@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-11T21:59:53.595Z",
+  "updatedAt": "2026-10-12T15:30:29.695Z",
   "videos": [
+    {
+      "id": "aGYPOCNPwpo",
+      "title": "Console - Shuten Doji Boss Fight, Power Awakening & Finale Duo Bosses Game Onimusha Way of the Sword",
+      "published": "2026-10-12T13:00:27+00:00",
+      "platform": null,
+      "url": "https://www.youtube.com/watch?v=aGYPOCNPwpo"
+    },
     {
       "id": "MjpvzmkuSGo",
       "title": "Console - Rescuing Villagers in the Caverns The Finale Blade Showdown Game Onimusha Way of the Sword",
@@ -36,13 +43,6 @@
       "published": "2026-10-07T13:00:31+00:00",
       "platform": null,
       "url": "https://www.youtube.com/watch?v=MDgZ_IfDtSM"
-    },
-    {
-      "id": "cTTl0O7pSwE",
-      "title": "Console - Through the Cursed Temple to the Final Sword Duel Game Onimusha Way of the Sword",
-      "published": "2026-10-06T13:00:17+00:00",
-      "platform": null,
-      "url": "https://www.youtube.com/watch?v=cTTl0O7pSwE"
     }
   ]
 }
