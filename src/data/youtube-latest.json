@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-12T15:30:29.695Z",
+  "updatedAt": "2026-10-13T14:15:14.970Z",
   "videos": [
+    {
+      "id": "syfGItqFE18",
+      "title": "Console- Finding the Secret Path, Battling Enemies & Sealing the Rift Game Onimusha Way of the Sword",
+      "published": "2026-10-13T13:00:17+00:00",
+      "platform": null,
+      "url": "https://www.youtube.com/watch?v=syfGItqFE18"
+    },
     {
       "id": "aGYPOCNPwpo",
       "title": "Console - Shuten Doji Boss Fight, Power Awakening & Finale Duo Bosses Game Onimusha Way of the Sword",
@@ -36,13 +43,6 @@
       "published": "2026-10-08T13:00:06+00:00",
       "platform": null,
       "url": "https://www.youtube.com/watch?v=ksDmIBoodVE"
-    },
-    {
-      "id": "MDgZ_IfDtSM",
-      "title": "Console - Battle on the Bridge & The 'Shadow Fall' Quest Game Onimusha Way of the Sword",
-      "published": "2026-10-07T13:00:31+00:00",
-      "platform": null,
-      "url": "https://www.youtube.com/watch?v=MDgZ_IfDtSM"
     }
   ]
 }
