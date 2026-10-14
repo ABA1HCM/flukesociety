@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-13T14:15:14.970Z",
+  "updatedAt": "2026-10-14T17:13:31.736Z",
   "videos": [
+    {
+      "id": "-T-mH-9KsRw",
+      "title": "Fighting Through the Village, Rescuing Villagers & Forest Puzzles Game Onimusha Way of the Sword",
+      "published": "2026-10-14T13:00:28+00:00",
+      "platform": null,
+      "url": "https://www.youtube.com/watch?v=-T-mH-9KsRw"
+    },
     {
       "id": "syfGItqFE18",
       "title": "Console- Finding the Secret Path, Battling Enemies & Sealing the Rift Game Onimusha Way of the Sword",
@@ -36,13 +43,6 @@
       "published": "2026-10-09T13:00:07+00:00",
       "platform": null,
       "url": "https://www.youtube.com/watch?v=vXvnhroHsnI"
-    },
-    {
-      "id": "ksDmIBoodVE",
-      "title": "Console - Temple Battle & Sword Duel in the Rain Game Onimusha Way of the Sword",
-      "published": "2026-10-08T13:00:06+00:00",
-      "platform": null,
-      "url": "https://www.youtube.com/watch?v=ksDmIBoodVE"
     }
   ]
 }
