@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-14T17:13:31.736Z",
+  "updatedAt": "2026-10-15T17:04:06.665Z",
   "videos": [
+    {
+      "id": "769JVX2KwGU",
+      "title": "Clash of Ganryu Showdown with Dokyo Game Onimusha Way of the Sword",
+      "published": "2026-10-15T13:00:27+00:00",
+      "platform": "console",
+      "url": "https://www.youtube.com/watch?v=769JVX2KwGU"
+    },
     {
       "id": "-T-mH-9KsRw",
       "title": "Fighting Through the Village, Rescuing Villagers & Forest Puzzles Game Onimusha Way of the Sword",
@@ -36,13 +43,6 @@
       "published": "2026-10-10T13:00:39+00:00",
       "platform": null,
       "url": "https://www.youtube.com/watch?v=OGibeTmaXaM"
-    },
-    {
-      "id": "vXvnhroHsnI",
-      "title": "Console - Braving the Rift & Okuni's Performance Game Onimusha Way of the Sword",
-      "published": "2026-10-09T13:00:07+00:00",
-      "platform": null,
-      "url": "https://www.youtube.com/watch?v=vXvnhroHsnI"
     }
   ]
 }
