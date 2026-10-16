@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-15T17:04:06.665Z",
+  "updatedAt": "2026-10-16T16:41:35.756Z",
   "videos": [
+    {
+      "id": "VjY6Zb4fV8o",
+      "title": "Breaching the Castle Relentless Boss Fights & Greater Nue Game Onimusha Way of the Sword",
+      "published": "2026-10-16T13:00:24+00:00",
+      "platform": "console",
+      "url": "https://www.youtube.com/watch?v=VjY6Zb4fV8o"
+    },
     {
       "id": "769JVX2KwGU",
       "title": "Clash of Ganryu Showdown with Dokyo Game Onimusha Way of the Sword",
@@ -36,13 +43,6 @@
       "published": "2026-10-11T13:00:28+00:00",
       "platform": null,
       "url": "https://www.youtube.com/watch?v=MjpvzmkuSGo"
-    },
-    {
-      "id": "OGibeTmaXaM",
-      "title": "Console - Storming the Fortress & Battling Mountain Enemies Game Onimusha Way of the Sword",
-      "published": "2026-10-10T13:00:39+00:00",
-      "platform": null,
-      "url": "https://www.youtube.com/watch?v=OGibeTmaXaM"
     }
   ]
 }
