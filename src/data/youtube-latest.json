@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-16T16:41:35.756Z",
+  "updatedAt": "2026-10-17T15:38:04.489Z",
   "videos": [
+    {
+      "id": "_BJZHvDnkxU",
+      "title": "The Ultimate Showdown & Conclusion Full Ending & Epilogue Game Onimusha Way of the Sword",
+      "published": "2026-10-17T13:00:23+00:00",
+      "platform": "console",
+      "url": "https://www.youtube.com/watch?v=_BJZHvDnkxU"
+    },
     {
       "id": "VjY6Zb4fV8o",
       "title": "Breaching the Castle Relentless Boss Fights & Greater Nue Game Onimusha Way of the Sword",
@@ -36,13 +43,6 @@
       "published": "2026-10-12T13:00:27+00:00",
       "platform": null,
       "url": "https://www.youtube.com/watch?v=aGYPOCNPwpo"
-    },
-    {
-      "id": "MjpvzmkuSGo",
-      "title": "Console - Rescuing Villagers in the Caverns The Finale Blade Showdown Game Onimusha Way of the Sword",
-      "published": "2026-10-11T13:00:28+00:00",
-      "platform": null,
-      "url": "https://www.youtube.com/watch?v=MjpvzmkuSGo"
     }
   ]
 }
