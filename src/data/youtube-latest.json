@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-17T15:38:04.489Z",
+  "updatedAt": "2026-10-18T15:54:28.048Z",
   "videos": [
+    {
+      "id": "_SG9yfHym0k",
+      "title": "Act 1 Chapter 1 Emergence - Battling Through Urban Chaos Game Gear Of War E-Day",
+      "published": "2026-10-18T13:00:37+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=_SG9yfHym0k"
+    },
     {
       "id": "_BJZHvDnkxU",
       "title": "The Ultimate Showdown & Conclusion Full Ending & Epilogue Game Onimusha Way of the Sword",
@@ -36,13 +43,6 @@
       "published": "2026-10-13T13:00:17+00:00",
       "platform": null,
       "url": "https://www.youtube.com/watch?v=syfGItqFE18"
-    },
-    {
-      "id": "aGYPOCNPwpo",
-      "title": "Console - Shuten Doji Boss Fight, Power Awakening & Finale Duo Bosses Game Onimusha Way of the Sword",
-      "published": "2026-10-12T13:00:27+00:00",
-      "platform": null,
-      "url": "https://www.youtube.com/watch?v=aGYPOCNPwpo"
     }
   ]
 }
