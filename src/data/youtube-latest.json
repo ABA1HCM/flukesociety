@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-22T17:13:13.805Z",
+  "updatedAt": "2026-10-23T17:10:59.412Z",
   "videos": [
+    {
+      "id": "aOSrNH9Tui4",
+      "title": "Act 1 Chapter 3 A Gear in Need - Supermarket Rescue Battle Game Gears of War E-Day",
+      "published": "2026-10-23T13:00:26+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=aOSrNH9Tui4"
+    },
     {
       "id": "01quXrlyEPo",
       "title": "Act 1 Chapter 2 Survival of the Fittest - Fighting Through the Police Station & Street Battles",
@@ -36,13 +43,6 @@
       "published": "2026-10-15T13:00:27+00:00",
       "platform": "console",
       "url": "https://www.youtube.com/watch?v=769JVX2KwGU"
-    },
-    {
-      "id": "-T-mH-9KsRw",
-      "title": "Fighting Through the Village, Rescuing Villagers & Forest Puzzles Game Onimusha Way of the Sword",
-      "published": "2026-10-14T13:00:28+00:00",
-      "platform": null,
-      "url": "https://www.youtube.com/watch?v=-T-mH-9KsRw"
     }
   ]
 }
