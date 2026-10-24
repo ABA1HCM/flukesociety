@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-23T17:10:59.412Z",
+  "updatedAt": "2026-10-24T15:59:23.442Z",
   "videos": [
+    {
+      "id": "ZDdT2x5Bt4k",
+      "title": "Act 1 Chapter 4 Back in the Fold - Escorting Civilians & Colossal City Clash Game Gears of War E-Day",
+      "published": "2026-10-24T13:00:00+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=ZDdT2x5Bt4k"
+    },
     {
       "id": "aOSrNH9Tui4",
       "title": "Act 1 Chapter 3 A Gear in Need - Supermarket Rescue Battle Game Gears of War E-Day",
@@ -36,13 +43,6 @@
       "published": "2026-10-16T13:00:24+00:00",
       "platform": "console",
       "url": "https://www.youtube.com/watch?v=VjY6Zb4fV8o"
-    },
-    {
-      "id": "769JVX2KwGU",
-      "title": "Clash of Ganryu Showdown with Dokyo Game Onimusha Way of the Sword",
-      "published": "2026-10-15T13:00:27+00:00",
-      "platform": "console",
-      "url": "https://www.youtube.com/watch?v=769JVX2KwGU"
     }
   ]
 }
