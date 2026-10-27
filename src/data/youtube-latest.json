@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-26T13:07:33.738Z",
+  "updatedAt": "2026-10-27T22:16:41.247Z",
   "videos": [
+    {
+      "id": "AsrGwB8IsUE",
+      "title": "Act 2 Chapter 2 Hold the Line - Station Assault & Securing the Perimeter Game Gears of War E-Day",
+      "published": "2026-10-27T13:00:39+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=AsrGwB8IsUE"
+    },
     {
       "id": "ZUbHEnaR03U",
       "title": "Act 2 Chapter 1 Bravo Squad - Linking Up with Bravo & Fighting Across the Bridge Gears of War E-Day",
@@ -36,13 +43,6 @@
       "published": "2026-10-18T13:00:37+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=_SG9yfHym0k"
-    },
-    {
-      "id": "_BJZHvDnkxU",
-      "title": "The Ultimate Showdown & Conclusion Full Ending & Epilogue Game Onimusha Way of the Sword",
-      "published": "2026-10-17T13:00:23+00:00",
-      "platform": "console",
-      "url": "https://www.youtube.com/watch?v=_BJZHvDnkxU"
     }
   ]
 }
