@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-30T12:58:59.129Z",
+  "updatedAt": "2026-10-30T22:24:02.571Z",
   "videos": [
+    {
+      "id": "2dSddo98wHE",
+      "title": "Act 2 Chapter 2 Hold the Line Part 2 - Rescuing Civilians & Urban Warfare Game Gears of War E-Day",
+      "published": "2026-10-30T13:00:31+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=2dSddo98wHE"
+    },
     {
       "id": "AsrGwB8IsUE",
       "title": "Act 2 Chapter 2 Hold the Line Part 1 - Station Assault & Securing the Perimeter",
@@ -36,13 +43,6 @@
       "published": "2026-10-22T13:00:31+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=01quXrlyEPo"
-    },
-    {
-      "id": "_SG9yfHym0k",
-      "title": "Act 1 Chapter 1 Emergence - Battling Through Urban Chaos Game Gear Of War E-Day",
-      "published": "2026-10-18T13:00:37+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=_SG9yfHym0k"
     }
   ]
 }
