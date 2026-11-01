@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-10-31T21:38:11.864Z",
+  "updatedAt": "2026-11-01T13:29:01.595Z",
   "videos": [
+    {
+      "id": "BTfD8FmjXV4",
+      "title": "Act 2 Chapter 3 - No Gear Left Behind - Locating Charlie Squad Game Gear of War E-Day",
+      "published": "2026-11-01T13:00:02+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=BTfD8FmjXV4"
+    },
     {
       "id": "LwDJK8W0MXk",
       "title": "Act 2 Chapter 2 Hold the Line Part 3 - Assisting the Team in the Heat of Battle Gears of War E-Day",
@@ -36,13 +43,6 @@
       "published": "2026-10-24T13:00:00+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=ZDdT2x5Bt4k"
-    },
-    {
-      "id": "aOSrNH9Tui4",
-      "title": "Act 1 Chapter 3 A Gear in Need - Supermarket Rescue Battle Game Gears of War E-Day",
-      "published": "2026-10-23T13:00:26+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=aOSrNH9Tui4"
     }
   ]
 }
