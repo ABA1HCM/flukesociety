@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-02T15:58:50.776Z",
+  "updatedAt": "2026-11-04T19:48:02.464Z",
   "videos": [
+    {
+      "id": "fhXg4UkFTAc",
+      "title": "Act 3 - Chapter 3 - Last Foothold - Urban Warfare & Convoy Escort Game Gear Of War E-Day",
+      "published": "2026-11-04T13:00:36+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=fhXg4UkFTAc"
+    },
     {
       "id": "4Ln3hfErimk",
       "title": "Act 2 Chapter 4 - Flyboys - Battle Across Air and Ground Game Gear Of War E-Day",
@@ -36,13 +43,6 @@
       "published": "2026-10-27T13:00:39+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=AsrGwB8IsUE"
-    },
-    {
-      "id": "ZUbHEnaR03U",
-      "title": "Act 2 Chapter 1 Bravo Squad - Linking Up with Bravo & Fighting Across the Bridge Gears of War E-Day",
-      "published": "2026-10-26T13:00:03+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=ZUbHEnaR03U"
     }
   ]
 }
