@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-04T19:48:02.464Z",
+  "updatedAt": "2026-11-05T19:59:12.072Z",
   "videos": [
+    {
+      "id": "vo7FwqJBiUU",
+      "title": "Act 3 - Chapter 4 - The Convoy - Defending the Convoy Across the Bridge Game Gear Of War E-Day",
+      "published": "2026-11-05T13:00:34+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=vo7FwqJBiUU"
+    },
     {
       "id": "fhXg4UkFTAc",
       "title": "Act 3 - Chapter 3 - Last Foothold - Urban Warfare & Convoy Escort Game Gear Of War E-Day",
@@ -36,13 +43,6 @@
       "published": "2026-10-30T13:00:31+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=2dSddo98wHE"
-    },
-    {
-      "id": "AsrGwB8IsUE",
-      "title": "Act 2 Chapter 2 Hold the Line Part 1 - Station Assault & Securing the Perimeter",
-      "published": "2026-10-27T13:00:39+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=AsrGwB8IsUE"
     }
   ]
 }
