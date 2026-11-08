@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-07T21:53:52.432Z",
+  "updatedAt": "2026-11-08T13:28:05.191Z",
   "videos": [
+    {
+      "id": "0hHDpid2Yzs",
+      "title": "Act 4 - Chapter 1 - Hope And Ruin - Battling Through the Graveyard to the Station",
+      "published": "2026-11-08T13:00:37+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=0hHDpid2Yzs"
+    },
     {
       "id": "lETouwWiNPg",
       "title": "Act 3 - Chapter 6 - Desperate Measures - Holding the Line The Brumak Showdown Game Gear Of War E-Day",
@@ -36,13 +43,6 @@
       "published": "2026-11-02T13:00:24+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=4Ln3hfErimk"
-    },
-    {
-      "id": "BTfD8FmjXV4",
-      "title": "Act 2 Chapter 3 - No Gear Left Behind - Locating Charlie Squad Game Gear of War E-Day",
-      "published": "2026-11-01T13:00:02+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=BTfD8FmjXV4"
     }
   ]
 }
