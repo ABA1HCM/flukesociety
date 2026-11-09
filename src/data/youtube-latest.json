@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-08T13:28:05.191Z",
+  "updatedAt": "2026-11-09T22:24:11.538Z",
   "videos": [
+    {
+      "id": "FmfMLAAujFI",
+      "title": "Act 4 - Chapter 2 - Technical Difficulties - Train Combat on the Downtown Line",
+      "published": "2026-11-09T13:00:02+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=FmfMLAAujFI"
+    },
     {
       "id": "0hHDpid2Yzs",
       "title": "Act 4 - Chapter 1 - Hope And Ruin - Battling Through the Graveyard to the Station",
@@ -36,13 +43,6 @@
       "published": "2026-11-04T13:00:36+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=fhXg4UkFTAc"
-    },
-    {
-      "id": "4Ln3hfErimk",
-      "title": "Act 2 Chapter 4 - Flyboys - Battle Across Air and Ground Game Gear Of War E-Day",
-      "published": "2026-11-02T13:00:24+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=4Ln3hfErimk"
     }
   ]
 }
