@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-09T22:24:11.538Z",
+  "updatedAt": "2026-11-10T19:46:00.846Z",
   "videos": [
+    {
+      "id": "xAsYTywpeFI",
+      "title": "Act 4 - Chapter 3 - Tough As Nails - Breaching the Armory & Holding the Power Station",
+      "published": "2026-11-10T13:00:22+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=xAsYTywpeFI"
+    },
     {
       "id": "FmfMLAAujFI",
       "title": "Act 4 - Chapter 2 - Technical Difficulties - Train Combat on the Downtown Line",
@@ -36,13 +43,6 @@
       "published": "2026-11-05T13:00:34+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=vo7FwqJBiUU"
-    },
-    {
-      "id": "fhXg4UkFTAc",
-      "title": "Act 3 - Chapter 3 - Last Foothold - Urban Warfare & Convoy Escort Game Gear Of War E-Day",
-      "published": "2026-11-04T13:00:36+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=fhXg4UkFTAc"
     }
   ]
 }
