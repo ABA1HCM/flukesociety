@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-10T19:46:00.846Z",
+  "updatedAt": "2026-11-11T19:38:01.280Z",
   "videos": [
+    {
+      "id": "TcuSJge-J-o",
+      "title": "Act 4 - Chapter 4 - Signals - Breaching the Blockade & Reaching the Radio Tower",
+      "published": "2026-11-11T13:00:03+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=TcuSJge-J-o"
+    },
     {
       "id": "xAsYTywpeFI",
       "title": "Act 4 - Chapter 3 - Tough As Nails - Breaching the Armory & Holding the Power Station",
@@ -36,13 +43,6 @@
       "published": "2026-11-06T13:00:37+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=uBGUq8lybPE"
-    },
-    {
-      "id": "vo7FwqJBiUU",
-      "title": "Act 3 - Chapter 4 - The Convoy - Defending the Convoy Across the Bridge Game Gear Of War E-Day",
-      "published": "2026-11-05T13:00:34+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=vo7FwqJBiUU"
     }
   ]
 }
