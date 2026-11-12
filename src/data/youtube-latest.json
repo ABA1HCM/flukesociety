@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-11T19:38:01.280Z",
+  "updatedAt": "2026-11-12T19:56:35.155Z",
   "videos": [
+    {
+      "id": "_iUZgIhh1NE",
+      "title": "Act 4 - Chapter 5 - Paths Diverge - Frontline Assault & Securing the Evacuation Route",
+      "published": "2026-11-12T13:00:10+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=_iUZgIhh1NE"
+    },
     {
       "id": "TcuSJge-J-o",
       "title": "Act 4 - Chapter 4 - Signals - Breaching the Blockade & Reaching the Radio Tower",
@@ -36,13 +43,6 @@
       "published": "2026-11-07T13:00:06+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=lETouwWiNPg"
-    },
-    {
-      "id": "uBGUq8lybPE",
-      "title": "Act 3 - Chapter 5 - Desperate Times - Urban Warfare & Civilian Rescue Game Gear Of War E-Day",
-      "published": "2026-11-06T13:00:37+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=uBGUq8lybPE"
     }
   ]
 }
