@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-13T19:45:01.572Z",
+  "updatedAt": "2026-11-14T18:06:39.725Z",
   "videos": [
+    {
+      "id": "Y5Mmooe2dWg",
+      "title": "Act 5 - Chapter 1 - One Problem At A Time - Repelling the Reaver Assault on the Train",
+      "published": "2026-11-14T13:00:07+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=Y5Mmooe2dWg"
+    },
     {
       "id": "5vgwgCpg0Hg",
       "title": "Act 4 - Chapter 6 - Critical Failure - Breaching the Refinery & Reaching the Core",
@@ -36,13 +43,6 @@
       "published": "2026-11-09T13:00:02+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=FmfMLAAujFI"
-    },
-    {
-      "id": "0hHDpid2Yzs",
-      "title": "Act 4 - Chapter 1 - Hope And Ruin - Battling Through the Graveyard to the Station",
-      "published": "2026-11-08T13:00:37+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=0hHDpid2Yzs"
     }
   ]
 }
