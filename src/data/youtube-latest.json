@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-14T18:06:39.725Z",
+  "updatedAt": "2026-11-15T18:53:00.383Z",
   "videos": [
+    {
+      "id": "NyvdghFFtsQ",
+      "title": "Act 5 - Chapter 2 - Ghost Town - Battling Through the City in Flames to the Rooftops",
+      "published": "2026-11-15T13:00:37+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=NyvdghFFtsQ"
+    },
     {
       "id": "Y5Mmooe2dWg",
       "title": "Act 5 - Chapter 1 - One Problem At A Time - Repelling the Reaver Assault on the Train",
@@ -36,13 +43,6 @@
       "published": "2026-11-10T13:00:22+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=xAsYTywpeFI"
-    },
-    {
-      "id": "FmfMLAAujFI",
-      "title": "Act 4 - Chapter 2 - Technical Difficulties - Train Combat on the Downtown Line",
-      "published": "2026-11-09T13:00:02+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=FmfMLAAujFI"
     }
   ]
 }
