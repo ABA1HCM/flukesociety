@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-15T18:53:00.383Z",
+  "updatedAt": "2026-11-16T22:06:56.926Z",
   "videos": [
+    {
+      "id": "DW5iXcjvMuM",
+      "title": "Act 5 - Chapter 3 - Storm Clouds - Gunfight in the Storm & Securing the LZ",
+      "published": "2026-11-16T13:00:33+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=DW5iXcjvMuM"
+    },
     {
       "id": "NyvdghFFtsQ",
       "title": "Act 5 - Chapter 2 - Ghost Town - Battling Through the City in Flames to the Rooftops",
@@ -36,13 +43,6 @@
       "published": "2026-11-11T13:00:03+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=TcuSJge-J-o"
-    },
-    {
-      "id": "xAsYTywpeFI",
-      "title": "Act 4 - Chapter 3 - Tough As Nails - Breaching the Armory & Holding the Power Station",
-      "published": "2026-11-10T13:00:22+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=xAsYTywpeFI"
     }
   ]
 }
