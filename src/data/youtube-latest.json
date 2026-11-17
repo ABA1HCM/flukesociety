@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-16T22:06:56.926Z",
+  "updatedAt": "2026-11-17T20:57:31.538Z",
   "videos": [
+    {
+      "id": "1GT_wXWG0x4",
+      "title": "Act 5 - Chapter 4 - Resolute Game Gear Of War E-Day",
+      "published": "2026-11-17T13:00:11+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=1GT_wXWG0x4"
+    },
     {
       "id": "DW5iXcjvMuM",
       "title": "Act 5 - Chapter 3 - Storm Clouds - Gunfight in the Storm & Securing the LZ",
@@ -36,13 +43,6 @@
       "published": "2026-11-12T13:00:10+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=_iUZgIhh1NE"
-    },
-    {
-      "id": "TcuSJge-J-o",
-      "title": "Act 4 - Chapter 4 - Signals - Breaching the Blockade & Reaching the Radio Tower",
-      "published": "2026-11-11T13:00:03+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=TcuSJge-J-o"
     }
   ]
 }
