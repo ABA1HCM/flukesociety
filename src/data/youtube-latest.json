@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-19T20:40:12.115Z",
+  "updatedAt": "2026-11-23T23:55:42.306Z",
   "videos": [
+    {
+      "id": "kEanVn7S3OY",
+      "title": "The House of the Dead 2: Remake | Chapter 1 – A Prelude",
+      "published": "2026-11-23T13:00:38+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=kEanVn7S3OY"
+    },
     {
       "id": "HMVe5kwEgpI",
       "title": "Act 5 - Chapter 5 - The Fall Of Kalona Game Gear Of War E-Day",
@@ -36,13 +43,6 @@
       "published": "2026-11-14T13:00:07+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=Y5Mmooe2dWg"
-    },
-    {
-      "id": "5vgwgCpg0Hg",
-      "title": "Act 4 - Chapter 6 - Critical Failure - Breaching the Refinery & Reaching the Core",
-      "published": "2026-11-13T13:00:08+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=5vgwgCpg0Hg"
     }
   ]
 }
