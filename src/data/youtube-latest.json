@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-23T23:55:42.306Z",
+  "updatedAt": "2026-11-24T22:28:47.053Z",
   "videos": [
+    {
+      "id": "baCPHDOFuyo",
+      "title": "The House of the Dead 2: Remake | Chapter 2 – Muddy",
+      "published": "2026-11-24T13:00:08+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=baCPHDOFuyo"
+    },
     {
       "id": "kEanVn7S3OY",
       "title": "The House of the Dead 2: Remake | Chapter 1 – A Prelude",
@@ -36,13 +43,6 @@
       "published": "2026-11-15T13:00:37+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=NyvdghFFtsQ"
-    },
-    {
-      "id": "Y5Mmooe2dWg",
-      "title": "Act 5 - Chapter 1 - One Problem At A Time - Repelling the Reaver Assault on the Train",
-      "published": "2026-11-14T13:00:07+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=Y5Mmooe2dWg"
     }
   ]
 }
