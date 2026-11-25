@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-24T22:28:47.053Z",
+  "updatedAt": "2026-11-25T21:43:53.405Z",
   "videos": [
+    {
+      "id": "9LLYG6SONPc",
+      "title": "The House of the Dead 2: Remake | Chapter 3 – Darkness",
+      "published": "2026-11-25T13:00:17+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=9LLYG6SONPc"
+    },
     {
       "id": "baCPHDOFuyo",
       "title": "The House of the Dead 2: Remake | Chapter 2 – Muddy",
@@ -36,13 +43,6 @@
       "published": "2026-11-16T13:00:33+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=DW5iXcjvMuM"
-    },
-    {
-      "id": "NyvdghFFtsQ",
-      "title": "Act 5 - Chapter 2 - Ghost Town - Battling Through the City in Flames to the Rooftops",
-      "published": "2026-11-15T13:00:37+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=NyvdghFFtsQ"
     }
   ]
 }
