@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-25T21:43:53.405Z",
+  "updatedAt": "2026-11-26T21:36:16.800Z",
   "videos": [
+    {
+      "id": "RviCe0dyNbs",
+      "title": "The House Of The Dead 2 Remake | The Fourth Chapter Despair",
+      "published": "2026-11-26T13:00:30+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=RviCe0dyNbs"
+    },
     {
       "id": "9LLYG6SONPc",
       "title": "The House of the Dead 2: Remake | Chapter 3 – Darkness",
@@ -36,13 +43,6 @@
       "published": "2026-11-17T13:00:11+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=1GT_wXWG0x4"
-    },
-    {
-      "id": "DW5iXcjvMuM",
-      "title": "Act 5 - Chapter 3 - Storm Clouds - Gunfight in the Storm & Securing the LZ",
-      "published": "2026-11-16T13:00:33+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=DW5iXcjvMuM"
     }
   ]
 }
