@@ -1,7 +1,14 @@
 {
   "channelId": "UC9djzIDyvWw1XtLFr1VX8LA",
-  "updatedAt": "2026-11-26T21:36:16.800Z",
+  "updatedAt": "2026-11-27T21:20:33.989Z",
   "videos": [
+    {
+      "id": "mmTw_dHjUQs",
+      "title": "The House Of The Dead 2 Remake | The Fifth Dawn",
+      "published": "2026-11-27T13:00:40+00:00",
+      "platform": "pc",
+      "url": "https://www.youtube.com/watch?v=mmTw_dHjUQs"
+    },
     {
       "id": "RviCe0dyNbs",
       "title": "The House Of The Dead 2 Remake | The Fourth Chapter Despair",
@@ -36,13 +43,6 @@
       "published": "2026-11-19T13:00:11+00:00",
       "platform": "pc",
       "url": "https://www.youtube.com/watch?v=HMVe5kwEgpI"
-    },
-    {
-      "id": "1GT_wXWG0x4",
-      "title": "Act 5 - Chapter 4 - Resolute Game Gear Of War E-Day",
-      "published": "2026-11-17T13:00:11+00:00",
-      "platform": "pc",
-      "url": "https://www.youtube.com/watch?v=1GT_wXWG0x4"
     }
   ]
 }
